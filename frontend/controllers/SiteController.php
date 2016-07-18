@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\components\TestHelper;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -29,7 +30,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup,test'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -49,6 +50,29 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionTest()
+    {
+        $user = [
+            'username' => '12321',
+            'password_reset_token' => 'asd334dasd21'
+        ];
+        print_r(date('Y-m-d H:i',time()));die;
+        $mail = Yii::$app->mailer->compose('passwordResetToken-html',$user);
+
+        $mail->setTo('773724313@qq.com');
+
+        $mail->setSubject('测试邮件');
+
+        if ($mail->send())
+        {
+            echo 213;
+        }
+        else
+        {
+            echo 'dsfds';
+        }
+//        echo 123;die;
+    }
     /**
      * @inheritdoc
      */
