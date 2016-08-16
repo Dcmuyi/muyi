@@ -52,26 +52,30 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        $user = [
-            'username' => '12321',
-            'password_reset_token' => 'asd334dasd21'
-        ];
-        print_r(date('Y-m-d H:i',time()));die;
-        $mail = Yii::$app->mailer->compose('passwordResetToken-html',$user);
+//        $user = [
+//            'username' => '12321',
+//            'password_reset_token' => 'asd334dasd21'
+//        ];
+//
+//        $mail = Yii::$app->mailer->compose('passwordResetToken-html',$user);
+//
+//        $mail->setTo('773724313@qq.com');
+//
+//        $mail->setSubject('测试邮件');
+//
+//        if ($mail->send())
+//        {
+//            echo 213;
+//        }
+//        else
+//        {
+//            echo 'dsfds';
+//        }
 
-        $mail->setTo('773724313@qq.com');
+        Yii::$app->session->setFlash('info','1321dasasd');
 
-        $mail->setSubject('测试邮件');
+        return $this->render('test');
 
-        if ($mail->send())
-        {
-            echo 213;
-        }
-        else
-        {
-            echo 'dsfds';
-        }
-//        echo 123;die;
     }
     /**
      * @inheritdoc
