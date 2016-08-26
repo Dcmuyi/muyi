@@ -33,6 +33,23 @@ class SiteController extends Controller
             ],
         ];
     }
+//
+//    public function behaviors()
+//    {
+//        return [
+//            'access' => [
+//                'class' => AccessControl::className(),
+//                'only' => ['other1', 'other2'],
+//                'rules' => [
+//                    [
+//                        'actions' => ['other1', 'other2'],
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      * @inheritdoc
