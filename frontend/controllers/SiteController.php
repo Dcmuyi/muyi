@@ -30,7 +30,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup,test'],
+                        'actions' => ['signup','test'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -52,26 +52,30 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-//        $user = [
-//            'username' => '12321',
-//            'password_reset_token' => 'asd334dasd21'
-//        ];
-//
-//        $mail = Yii::$app->mailer->compose('passwordResetToken-html',$user);
-//
-//        $mail->setTo('773724313@qq.com');
-//
-//        $mail->setSubject('测试邮件');
-//
-//        if ($mail->send())
-//        {
-//            echo 213;
-//        }
-//        else
-//        {
-//            echo 'dsfds';
-//        }
+        $user = [
+            'username' => '12321',
+            'password_reset_token' => 'asd334dasd21'
+        ];
 
+        $mail = Yii::$app->mailer->compose(
+            ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+            ['user' => $user]
+        );
+
+        $mail->setTo('773724313@qq.com');
+
+//        $mail->setFrom(['773724313@qq.com'=>'爱上覅厚爱']);
+        $mail->setSubject('测试邮件2');
+
+        if ($mail->send())
+        {
+            echo 2131;
+        }
+        else
+        {
+            echo 'dsfds';
+        }
+die;
         Yii::$app->session->setFlash('info','1321dasasd');
 
         return $this->render('test');
