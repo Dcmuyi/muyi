@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use frontend\components\TestHelper;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\bootstrap\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -30,12 +31,12 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup','test'],
+                        'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'test'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,6 +51,10 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * 发送邮件测试
+     * @return string
+     */
     public function actionTest()
     {
         $user = [
@@ -64,7 +69,6 @@ class SiteController extends Controller
 
         $mail->setTo('773724313@qq.com');
 
-//        $mail->setFrom(['773724313@qq.com'=>'爱上覅厚爱']);
         $mail->setSubject('测试邮件2');
 
         if ($mail->send())
