@@ -7,5 +7,9 @@ return [
     'agent' => [
         '0' => '男',
         '1' => '女',
-    ]
+    ],
+
+    'staticUrl' => '',
+
+    'imageStaticHost' => 'http://img.jkbsimg.com/'
 ];

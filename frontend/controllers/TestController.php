@@ -14,7 +14,6 @@ class TestController extends CommonController
     {
         echo 213;
 
-        die;
         return $this->render('test');
     }
 
