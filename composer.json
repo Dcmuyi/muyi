@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "linslin/yii2-curl": "*",
         "fergusean/nusoap": "^0.9.5",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "aliyuncs/oss-sdk-php": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

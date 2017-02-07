@@ -11,6 +11,7 @@ use yii\web\Controller;
  */
 class CommonController extends Controller
 {
+    public $enableCsrfValidation = false;
     public $returnUrlParam = '__returnUrl';
     /**
      * 初始化
