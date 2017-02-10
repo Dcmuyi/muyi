@@ -1,149 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>wangEditor2 test</title>
-    <link rel="stylesheet" type="text/css" href="../../../common/components/editor/dist/css/wangEditor.min.css">
-    <style type="text/css">
-        #editor-trigger {
-            height: 400px;
-            /*max-height: 500px;*/
+    <meta charset="utf-8" />
+    <title>Default Examples</title>
+    <style>
+        form {
+            margin: 0;
         }
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
+        textarea {
+            display: block;
         }
     </style>
+    <link rel="stylesheet" href="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/themes/default/default.css' ?>" />
+    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/kindeditor-min.js' ?>"></script>
+    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/lang/zh_CN.js' ?>"></script>
+    <!--语法加亮-->
+    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/plugins/code/prettify.js' ?>"></script>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="content"]', {
+                allowPreviewEmoticons : false,
+                resizeType : 1,
+                allowImageUpload : true,
+                cssPath : 'https://b2b.jkbsapp.com/kindeditor/plugins/code/prettify.css',
+                uploadJson : '<?php echo \yii\helpers\Url::to(['/upload/upload-img']) ?>',
+                items : [
+                    'fontname', 'fontsize', 'code', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'table', '|', 'print', 'preview']
+            });
+            K('input[name=getHtml]').click(function(e) {
+                alert(editor.html());
+            });
+            K('input[name=isEmpty]').click(function(e) {
+                alert(editor.isEmpty());
+            });
+            K('input[name=getText]').click(function(e) {
+                alert(editor.text());
+            });
+            K('input[name=selectedHtml]').click(function(e) {
+                alert(editor.selectedHtml());
+            });
+            K('input[name=setHtml]').click(function(e) {
+                editor.html('<h3>Hello KindEditor</h3>');
+            });
+            K('input[name=setText]').click(function(e) {
+                editor.text('<h3>Hello KindEditor</h3>');
+            });
+            K('input[name=insertHtml]').click(function(e) {
+                editor.insertHtml('<strong>插入HTML</strong>');
+            });
+            K('input[name=appendHtml]').click(function(e) {
+                editor.appendHtml('<strong>添加HTML</strong>');
+            });
+            K('input[name=clear]').click(function(e) {
+                editor.html('');
+            });
+        });
+    </script>
 </head>
-<body style="padding:0 20px;">
-<p>wangEditor2.0 支持 IE8 浏览器</p>
-<div id="editor-container" class="container">
-    <div id="editor-trigger"><p>请输入内容</p></div>
-    <!-- <textarea id="editor-trigger" style="display:none;">
-        <p>请输入内容...</p>
-    </textarea> -->
-</div>
-<p><br></p>
-
-<script type="text/javascript" src="../../../common/components/editor/dist/js/lib/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../../../common/components/editor/dist/js/wangEditor.js"></script>
-<script type="text/javascript" src="../../../common/components/editor/dist/js/wangEditor.min.js"></script>
-<script type="text/javascript">
-    // 阻止输出log
-    // wangEditor.config.printLog = false;
-
-    var editor = new wangEditor('editor-trigger');
-
-    // 上传图片
-    editor.config.uploadImgUrl = '/upload';
-    editor.config.uploadParams = {
-        // token1: 'abcde',
-        // token2: '12345'
-    };
-    editor.config.uploadHeaders = {
-        // 'Accept' : 'text/x-json'
-    }
-    // editor.config.uploadImgFileName = 'myFileName';
-
-    // 隐藏网络图片
-    // editor.config.hideLinkImg = true;
-
-    // 表情显示项
-    editor.config.emotionsShow = 'value';
-    editor.config.emotions = {
-        'default': {
-            title: '默认',
-            data: './emotions.data'
-        },
-        'weibo': {
-            title: '微博表情',
-            data: [
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/7a/shenshou_thumb.gif',
-                    value: '[草泥马]'
-                },
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/60/horse2_thumb.gif',
-                    value: '[神马]'
-                },
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/bc/fuyun_thumb.gif',
-                    value: '[浮云]'
-                },
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/c9/geili_thumb.gif',
-                    value: '[给力]'
-                },
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/f2/wg_thumb.gif',
-                    value: '[围观]'
-                },
-                {
-                    icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/70/vw_thumb.gif',
-                    value: '[威武]'
-                }
-            ]
-        }
-    };
-
-    // 插入代码时的默认语言
-    // editor.config.codeDefaultLang = 'html'
-
-    // 只粘贴纯文本
-    // editor.config.pasteText = true;
-
-    // 跨域上传
-    // editor.config.uploadImgUrl = 'http://localhost:8012/upload';
-
-    // 第三方上传
-    // editor.config.customUpload = true;
-
-    // 普通菜单配置
-    // editor.config.menus = [
-    //     'img',
-    //     'insertcode',
-    //     'eraser',
-    //     'fullscreen'
-    // ];
-    // 只排除某几个菜单（兼容IE低版本，不支持ES5的浏览器），支持ES5的浏览器可直接用 [].map 方法
-    // editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
-    //     if (item === 'insertcode') {
-    //         return null;
-    //     }
-    //     if (item === 'fullscreen') {
-    //         return null;
-    //     }
-    //     return item;
-    // });
-
-    // onchange 事件
-    editor.onchange = function () {
-        console.log(this.$txt.html());
-    };
-
-    // 取消过滤js
-    // editor.config.jsFilter = false;
-
-    // 取消粘贴过来
-    // editor.config.pasteFilter = false;
-
-    // 设置 z-index
-    // editor.config.zindex = 20000;
-
-    // 语言
-    // editor.config.lang = wangEditor.langs['en'];
-
-    // 自定义菜单UI
-    // editor.UI.menus.bold = {
-    //     normal: '<button style="font-size:20px; margin-top:5px;">B</button>',
-    //     selected: '.selected'
-    // };
-    // editor.UI.menus.italic = {
-    //     normal: '<button style="font-size:20px; margin-top:5px;">I</button>',
-    //     selected: '<button style="font-size:20px; margin-top:5px;"><i>I</i></button>'
-    // };
-    editor.create();
-</script>
+<body>
+<h3>默认模式</h3>
+<form method="post">
+    <textarea name="content" style="width:800px;height:400px;visibility:hidden;"><?php echo empty($_POST['content']) ? '' : $_POST['content']?></textarea>
+    <p>
+        <input type="button" name="getHtml" value="取得HTML" />
+        <input type="button" name="isEmpty" value="判断是否为空" />
+        <input type="button" name="getText" value="取得文本(包含img,embed)" />
+        <input type="button" name="selectedHtml" value="取得选中HTML" />
+        <br />
+        <br />
+        <input type="button" name="setHtml" value="设置HTML" />
+        <input type="button" name="setText" value="设置文本" />
+        <input type="button" name="insertHtml" value="插入HTML" />
+        <input type="button" name="appendHtml" value="添加HTML" />
+        <input type="button" name="clear" value="清空内容" />
+        <input type="reset" name="reset" value="Reset" />
+    </p>
+    <button type="submit" value="提交内容">1312</button> (提交快捷键: Ctrl + Enter)
+</form>
 </body>
 </html>

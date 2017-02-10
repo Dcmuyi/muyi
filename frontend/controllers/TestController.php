@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\CommonHelper;
 use Yii;
+use yii\bootstrap\Html;
 
 /**
  * Class TestController
@@ -15,7 +16,8 @@ class TestController extends CommonController
     {
         if (Yii::$app->request->getIsPost())
         {
-            print_r(Yii::$app->request->post());die;
+            $content = Html::encode(Yii::$app->request->post('content'));
+
         }
 
         return $this->render('test');

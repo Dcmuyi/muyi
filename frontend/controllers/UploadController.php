@@ -87,6 +87,43 @@ class UploadController extends CommonController
         CommonHelper::ajaxSuccess($data);
     }
 
+    /**
+     * kindeditor上传图片
+     * @return array
+     */
+    public function actionUploadImg()
+    {
+        try {
+            $model = new UploadImage();
+
+            $model->imageFile = UploadedFile::getInstanceByName("imgFile");
+
+            $uploadFile = $model->upload('pic');
+            if($uploadFile){
+                $oss = new Oss();
+                $oss->upload($uploadFile,$uploadFile);
+
+                $error = 0;
+                $message = '上传成功';
+                $result = 'http://jkbsimg.com/'.$uploadFile;
+            }
+            else
+            {
+                throw new Exception('上传图片失败');
+            }
+        }
+        catch (Exception $e)
+        {
+            $error =  1;
+            $message = $e->getMessage();
+            $result = '';
+        }
+
+        $data = ['error'=> $error, 'url'=> $result, 'message' => $message];
+
+        CommonHelper::ajaxSuccess($data);
+    }
+
     public function actionUploadFile(){
         $model = new UploadFile();
 

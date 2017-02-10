@@ -29,7 +29,7 @@ class UploadImage extends Model{
             $path = self::makeUploadPath($dir);
             $name = CommonHelper::randomString(10);
 
-            $fileUploadFullPath = sprintf("%s/%s.%s",$path,$name, $this->imageFile->extension);
+            $fileUploadFullPath = sprintf("%s/%s.%s",$path,$name, $this->imageFile->extension ? $this->imageFile->extension : 'png');
             $result = $this->imageFile->saveAs($fileUploadFullPath);
 
             if ($result) {

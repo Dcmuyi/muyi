@@ -22,7 +22,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
-    <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/jquery-3.1.1.min.js' ?>"></script>
+    <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?>"></script>
     <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?>"></script>
 </head>
 <body>
