@@ -9,9 +9,8 @@ use yii\web\Controller;
  * Class CommonController
  * @package app\components\controller
  */
-class CommonController extends Controller
+class CommonController extends BaseController
 {
-    public $enableCsrfValidation = false;
     public $returnUrlParam = '__returnUrl';
     /**
      * 初始化
