@@ -20,7 +20,7 @@
         "require-dev": {
             "composer/composer": "^1.0"
         },
-        "time": "2016-12-20 13:33:37",
+        "time": "2016-12-20T13:33:37+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "yii\\composer\\Plugin",
@@ -66,7 +66,7 @@
             "reference": "463c772ae805aed7f396d89e6dce1dc0ce4c038b",
             "shasum": ""
         },
-        "time": "2014-05-19 03:44:33",
+        "time": "2014-05-19T03:44:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -141,7 +141,7 @@
         "require": {
             "php": ">=5.2"
         },
-        "time": "2016-07-16 12:58:58",
+        "time": "2016-07-16T12:58:58+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -307,7 +307,7 @@
             "facebook/xhprof": "*@dev",
             "phpunit/phpunit": "4.1.*"
         },
-        "time": "2016-12-11 13:37:11",
+        "time": "2016-12-11T13:37:11+00:00",
         "bin": [
             "bin/markdown"
         ],
@@ -373,7 +373,7 @@
             "php": ">=5.4.0",
             "yiisoft/yii2-composer": "~2.0.4"
         },
-        "time": "2017-01-15 23:00:29",
+        "time": "2017-01-15T23:00:29+00:00",
         "bin": [
             "yii"
         ],
@@ -517,7 +517,7 @@
             "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
             "yiisoft/yii2": "~2.0.6"
         },
-        "time": "2016-12-19 12:53:18",
+        "time": "2016-12-19T12:53:18+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -594,7 +594,7 @@
             "reference": "0464787bfa7cd13576c5a1e318709768798bec6a",
             "shasum": ""
         },
-        "time": "2016-04-07 12:29:16",
+        "time": "2016-04-07T12:29:16+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -642,7 +642,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "~1.5"
         },
-        "time": "2017-01-05 16:44:55",
+        "time": "2017-01-05T16:44:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -693,7 +693,7 @@
             "mockery/mockery": "~0.9.1",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2016-12-29 10:10:06",
+        "time": "2016-12-29T10:10:06+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -746,7 +746,7 @@
             "swiftmailer/swiftmailer": "~5.0",
             "yiisoft/yii2": "~2.0.4"
         },
-        "time": "2016-11-30 11:55:45",
+        "time": "2016-11-30T11:55:45+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -798,7 +798,7 @@
             "ext-curl": "*",
             "yiisoft/yii2": "*"
         },
-        "time": "2016-10-31 12:31:06",
+        "time": "2016-10-31T12:31:06+00:00",
         "type": "yii2-extension",
         "installation-source": "dist",
         "autoload": {
@@ -848,7 +848,7 @@
         "require-dev": {
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2016-10-03 10:33:09",
+        "time": "2016-10-03T10:33:09+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -906,7 +906,7 @@
         "require": {
             "yiisoft/yii2": ">=2.0.4"
         },
-        "time": "2016-10-20 13:07:49",
+        "time": "2016-10-20T13:07:49+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -955,7 +955,7 @@
             "yiisoft/yii2": "~2.0.4",
             "yiisoft/yii2-bootstrap": "~2.0.0"
         },
-        "time": "2016-12-15 14:50:58",
+        "time": "2016-12-15T14:50:58+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -1006,7 +1006,7 @@
             "yiisoft/yii2": "~2.0.4",
             "yiisoft/yii2-bootstrap": "~2.0"
         },
-        "time": "2016-12-21 16:50:20",
+        "time": "2016-12-21T16:50:20+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -1059,7 +1059,7 @@
             "fzaninotto/faker": "~1.4",
             "yiisoft/yii2": "~2.0.0"
         },
-        "time": "2016-12-02 21:11:03",
+        "time": "2016-12-02T21:11:03+00:00",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -1111,7 +1111,7 @@
             "phpunit/phpunit": "~4.0",
             "satooshi/php-coveralls": "~1.0"
         },
-        "time": "2017-01-18 08:56:15",
+        "time": "2017-01-18T08:56:15+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1131,5 +1131,55 @@
         ],
         "description": "Aliyun OSS SDK for PHP",
         "homepage": "http://www.aliyun.com/product/oss/"
+    },
+    {
+        "name": "yiisoft/yii2-redis",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-redis.git",
+            "reference": "c1ada15bd8ba617b6fd295b5acf62bab0258eb18"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-redis/zipball/c1ada15bd8ba617b6fd295b5acf62bab0258eb18",
+            "reference": "c1ada15bd8ba617b6fd295b5acf62bab0258eb18",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "~2.0.4"
+        },
+        "time": "2017-02-01T11:57:18+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\redis\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Carsten Brandt",
+                "email": "mail@cebe.cc"
+            }
+        ],
+        "description": "Redis Cache, Session and ActiveRecord for the Yii framework",
+        "keywords": [
+            "active-record",
+            "cache",
+            "redis",
+            "session",
+            "yii2"
+        ]
     }
 ]

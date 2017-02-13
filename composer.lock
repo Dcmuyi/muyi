@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0caa32709f89938bc9d5dcdc2ec08482",
-    "content-hash": "7e27a871182c255c37a7afeda6c1441e",
+    "content-hash": "227785e08ee45df9a88153fe607e7d11",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -46,7 +45,7 @@
             ],
             "description": "Aliyun OSS SDK for PHP",
             "homepage": "http://www.aliyun.com/product/oss/",
-            "time": "2017-01-18 08:56:15"
+            "time": "2017-01-18T08:56:15+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -294,7 +293,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2016-12-11 13:37:11"
+            "time": "2016-12-11T13:37:11+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -338,7 +337,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2016-07-16 12:58:58"
+            "time": "2016-07-16T12:58:58+00:00"
         },
         {
             "name": "fergusean/nusoap",
@@ -375,7 +374,7 @@
                 }
             ],
             "description": "NuSOAP re-packaged for Packagist/Composer",
-            "time": "2014-05-19 03:44:33"
+            "time": "2014-05-19T03:44:33+00:00"
         },
         {
             "name": "linslin/yii2-curl",
@@ -418,7 +417,7 @@
                 "restful",
                 "yii2"
             ],
-            "time": "2016-10-31 12:31:06"
+            "time": "2016-10-31T12:31:06+00:00"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -480,7 +479,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2016-10-03 10:33:09"
+            "time": "2016-10-03T10:33:09+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -534,7 +533,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-12-29 10:10:06"
+            "time": "2016-12-29T10:10:06+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -634,7 +633,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-01-15 23:00:29"
+            "time": "2017-01-15T23:00:29+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -684,7 +683,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2016-12-19 12:53:18"
+            "time": "2016-12-19T12:53:18+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -734,7 +733,55 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-12-20 13:33:37"
+            "time": "2016-12-20T13:33:37+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-redis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-redis.git",
+                "reference": "c1ada15bd8ba617b6fd295b5acf62bab0258eb18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-redis/zipball/c1ada15bd8ba617b6fd295b5acf62bab0258eb18",
+                "reference": "c1ada15bd8ba617b6fd295b5acf62bab0258eb18",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\redis\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc"
+                }
+            ],
+            "description": "Redis Cache, Session and ActiveRecord for the Yii framework",
+            "keywords": [
+                "active-record",
+                "cache",
+                "redis",
+                "session",
+                "yii2"
+            ],
+            "time": "2017-02-01T11:57:18+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -784,7 +831,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2016-11-30 11:55:45"
+            "time": "2016-11-30T11:55:45+00:00"
         }
     ],
     "packages-dev": [
@@ -863,7 +910,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-01-05 16:44:55"
+            "time": "2017-01-05T16:44:55+00:00"
         },
         {
             "name": "phpspec/php-diff",
@@ -901,7 +948,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2016-04-07 12:29:16"
+            "time": "2016-04-07T12:29:16+00:00"
         },
         {
             "name": "yiisoft/yii2-codeception",
@@ -947,7 +994,7 @@
                 "yii2"
             ],
             "abandoned": "codeception/codeception",
-            "time": "2016-10-20 13:07:49"
+            "time": "2016-10-20T13:07:49+00:00"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -994,7 +1041,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2016-12-15 14:50:58"
+            "time": "2016-12-15T14:50:58+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -1041,7 +1088,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2016-12-02 21:11:03"
+            "time": "2016-12-02T21:11:03+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -1094,7 +1141,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-12-21 16:50:20"
+            "time": "2016-12-21T16:50:20+00:00"
         }
     ],
     "aliases": [],

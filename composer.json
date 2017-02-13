@@ -21,7 +21,8 @@
         "linslin/yii2-curl": "*",
         "fergusean/nusoap": "^0.9.5",
         "phpoffice/phpexcel": "^1.8",
-        "aliyuncs/oss-sdk-php": "^2.2"
+        "aliyuncs/oss-sdk-php": "^2.2",
+        "yiisoft/yii2-redis": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
