@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=test',
-            'username' => 'root',
-            'password' => '',
+            'dsn' => 'mysql:host=45.77.11.64;dbname=test',
+            'username' => 'zydc',
+            'password' => 'ydch920107',
             'charset' => 'utf8',
         ],
         'mailer' => [
@@ -14,15 +14,15 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport', //使用的类
                 'host' => 'smtp.qq.com', //邮箱服务一地址
-                'username' => '773724313',//邮箱地址，发送的邮箱
-                'password' => 'tfmvvohbuclgbfgi',  //自己填写邮箱密码
+                'username' => '773724313@qq.com',//邮箱地址，发送的邮箱
+                'password' => 'hqfdpfzakphpbfdd',  //自己填写邮箱密码
                 'port' => '465',  //服务器端口
                 'encryption' => 'ssl', //加密方式
             ],
 
             'messageConfig'=>[
                 'charset'=>'UTF-8', //编码
-                'from' => ['773724313@qq.com' => '地方阿斯达']  //邮件里面显示的邮件地址和名称
+                'from' => ['773724313@qq.com' => '论坛']  //邮件里面显示的邮件地址和名称
             ],
         ],
     ],

@@ -24,6 +24,10 @@ class ComposerStaticInitb174566100010a643134e61d3a797a5e
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'm' => 
+        array (
+            'mdm\\admin\\' => 10,
+        ),
         'l' => 
         array (
             'linslin\\yii2\\curl\\' => 18,
@@ -78,6 +82,10 @@ class ComposerStaticInitb174566100010a643134e61d3a797a5e
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'mdm\\admin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
         ),
         'linslin\\yii2\\curl\\' => 
         array (

@@ -14,21 +14,28 @@ return [
 
     'controllerNamespace' => 'frontend\controllers',
 
+    'modules' => [
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',//yii2-admin的导航菜单
+        ]
+    ],
+
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            'csrfParam' => '_csrf-test',
         ],
 
         'user' => [
             'identityClass' => 'common\models\User',
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-test', 'httpOnly' => true],
             'enableAutoLogin' => true,
             'loginUrl'=> '/site/login',
         ],
 
         'session' => [
             // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            'name' => 'advanced-test',
         ],
 
         'log' => [
@@ -50,6 +57,16 @@ return [
             'showScriptName' => false,
         ],
 
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
+
     ],
+
+    'aliases' => [
+        '@mdm/admin' => '@app/extensions/mdmsoft/yii2-admin',
+        // for example: '@mdm/admin' => '@app/extensions/mdm/yii2-admin-2.0.0',
+    ],
+
     'params' => $params,
 ];
