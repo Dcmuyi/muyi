@@ -64,12 +64,12 @@ class UploadController extends CommonController
                     imagedestroy($im);
                     imagedestroy($newim);
                 }
-
-                $oss = new Oss();
-                $oss->upload($uploadFile,$uploadFile);
+//
+//                $oss = new Oss();
+//                $oss->upload($uploadFile,$uploadFile);
 
                 $message = '上传成功';
-                $result = 'http://jkbsimg.com/'.$uploadFile;
+                $result = 'https://www.zydc1104.top/'.$uploadFile;
             }
             else
             {

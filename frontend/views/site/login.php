@@ -8,7 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = '登陆';
+
 $this->params['breadcrumbs'][] = $this->title;
+
+print_r($this->params['breadcrumbs']);
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>

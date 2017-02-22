@@ -18,30 +18,44 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Shortcut Icon" id="web-icon" href="https://wujunze.com/favicon.ico" type="image/x-icon">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
-    <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?>"></script>
-    <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?>"></script>
+<!---->
+<!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?><!--"></script>-->
+<!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?><!--"></script>-->
 </head>
 <body>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+
     <?php
     NavBar::begin([
-        'brandLabel' => '首页',
+        'brandLabel' => 'test',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-default navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top navbar',
         ],
     ]);
+
     $menuItems = [
         ['label' => '首页', 'url' => ['/site/index']],
+    ];
+
+
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left nav-pills'],
+        'items' => $menuItems,
+        'encodeLabels' => false,
+    ]);
+
+    $menuItems = [
         ['label' => '关于我们', 'url' => ['/site/about']],
         ['label' => '联系我们', 'url' => ['/site/contact']],
     ];
+
     if (Yii::$app->user->isGuest)
     {
         $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
@@ -50,7 +64,7 @@ AppAsset::register($this);
     else
     {
         $menuItems[] = [
-            'label' => "下拉",
+            'label' => Yii::$app->user->identity->username,
             'items' => [
                 ['label' => '测试111', 'url' => '#'],
                 '<li class="divider"></li>',
@@ -60,14 +74,15 @@ AppAsset::register($this);
         ];
     }
 
-    echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form navbar-left mt-10']);
-    echo Html::textInput('search','',['class'=>'']);
+    echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
+    echo Html::textInput('keyword', '', ['class' => 'form-control']);
 
     echo Html::endForm();
 
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav navbar-right nav-pills'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
     ?>

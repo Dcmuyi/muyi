@@ -5,6 +5,7 @@ use frontend\components\TestHelper;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\bootstrap\Html;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -90,6 +91,7 @@ die;
      */
     public function actions()
     {
+        Yii::$app->view->params['breadcrumbs'][] = ['label' => 'Test2s1', 'url' => Url::to(['re'])];
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
