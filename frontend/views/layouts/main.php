@@ -18,43 +18,51 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="Shortcut Icon" id="web-icon" href="https://wujunze.com/favicon.ico" type="image/x-icon">
+    <link rel="Shortcut Icon" id="web-icon" href="https://www.zydc1104.top/up/pic/2017/02/22/QWExEuHcf4.jpg" type="image/x-icon">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 <!---->
 <!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?><!--"></script>-->
 <!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?><!--"></script>-->
+
+    <style>
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            margin-top: -8px;
+            margin-bottom: -12px;
+        }
+        .user-pic {
+            width: 36px;
+            height: 36px;
+            margin-top: -13px;
+            margin-bottom: -12px;
+        }
+    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-
     <?php
     NavBar::begin([
-        'brandLabel' => 'test',
+        'brandLabel' => '<image class="header-logo" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-top navbar',
         ],
     ]);
 
-    $menuItems = [
+    $menuItemsLeft = [
         ['label' => '首页', 'url' => ['/site/index']],
     ];
 
-
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left nav-pills'],
-        'items' => $menuItems,
+        'items' => $menuItemsLeft,
         'encodeLabels' => false,
     ]);
-
-    $menuItems = [
-        ['label' => '关于我们', 'url' => ['/site/about']],
-        ['label' => '联系我们', 'url' => ['/site/contact']],
-    ];
 
     if (Yii::$app->user->isGuest)
     {
@@ -64,7 +72,8 @@ AppAsset::register($this);
     else
     {
         $menuItems[] = [
-            'label' => Yii::$app->user->identity->username,
+            'label' => '<image class="user-pic" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />',
+//            'label' => Yii::$app->user->identity->username,
             'items' => [
                 ['label' => '测试111', 'url' => '#'],
                 '<li class="divider"></li>',
@@ -75,7 +84,8 @@ AppAsset::register($this);
     }
 
     echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
-    echo Html::textInput('keyword', '', ['class' => 'form-control']);
+    echo Html::textInput('q', '', ['class' => 'form-control']);
+    echo Html::button( '<image style="width: 5px;height:5px;" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />', ['class' => 'form-control']);
 
     echo Html::endForm();
 
