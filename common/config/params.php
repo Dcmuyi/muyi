@@ -13,6 +13,8 @@ return [
 
     'b2bUrl' => 'https://b2b.jkbsapp.com',
 
+    'webUrl' => 'https://www.zydc1104.top',
+
     'imageStaticHost' => 'http://img.jkbsimg.com/',
 
     'oss'=>[

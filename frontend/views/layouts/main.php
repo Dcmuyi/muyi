@@ -18,13 +18,12 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="Shortcut Icon" id="web-icon" href="https://www.zydc1104.top/up/pic/2017/02/22/QWExEuHcf4.jpg" type="image/x-icon">
+    <link rel="Shortcut Icon" id="web-icon" href="https://www.zydc1104.top/up/logo.png" type="image/x-icon">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-<!---->
-<!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?><!--"></script>-->
-<!--    <script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?><!--"></script>-->
+
+    <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
 
     <style>
         .header-logo {
@@ -47,22 +46,26 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => '<image class="header-logo" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />',
+        'brandLabel' => '<image class="header-logo" src="/up/logo.png" />',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-default navbar-fixed-top navbar',
+            'class' => 'navbar-inverse navbar-nav navbar-fixed-top navbar',
         ],
     ]);
 
     $menuItemsLeft = [
         ['label' => '首页', 'url' => ['/site/index']],
+        ['label' => '富文本', 'url' => ['/test/test']],
+        ['label' => '上传图片', 'url' => ['/test/test-one']],
     ];
 
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left nav-pills'],
+        'options' => ['class' => 'navbar-nav navbar-left nav'],
         'items' => $menuItemsLeft,
         'encodeLabels' => false,
     ]);
+
+    $menuItems[] = ['label' => '<li class="fa fa-bell"></li>', 'url' => ['/site/signup']];
 
     if (Yii::$app->user->isGuest)
     {
@@ -84,7 +87,7 @@ AppAsset::register($this);
     }
 
     echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
-    echo Html::textInput('q', '', ['class' => 'form-control']);
+    echo Html::textInput('q', '', ['class' => 'form-control phone-input']);
     echo Html::button( '<image style="width: 5px;height:5px;" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />', ['class' => 'form-control']);
 
     echo Html::endForm();

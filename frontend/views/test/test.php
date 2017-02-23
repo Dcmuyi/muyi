@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,11 +10,11 @@
             display: block;
         }
     </style>
-    <link rel="stylesheet" href="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/themes/default/default.css' ?>" />
-    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/kindeditor-min.js' ?>"></script>
-    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/lang/zh_CN.js' ?>"></script>
+    <link rel="stylesheet" href="<?php echo Yii::$app->params['webUrl'].'/kindeditor/themes/default/default.css' ?>" />
+    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/kindeditor-min.js' ?>"></script>
+    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/lang/zh_CN.js' ?>"></script>
     <!--语法加亮-->
-    <script charset="utf-8" src="<?php echo Yii::$app->params['b2bUrl'].'/kindeditor/plugins/code/prettify.js' ?>"></script>
+    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/plugins/code/prettify.js' ?>"></script>
     <script>
         var editor;
         KindEditor.ready(function(K) {
