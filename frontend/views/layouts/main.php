@@ -38,6 +38,11 @@ AppAsset::register($this);
             margin-top: -13px;
             margin-bottom: -12px;
         }
+
+        h1 {
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>

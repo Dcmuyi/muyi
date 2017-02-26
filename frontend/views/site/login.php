@@ -11,12 +11,9 @@ $this->title = '登陆';
 
 $this->params['breadcrumbs'][] = $this->title;
 
-print_r($this->params['breadcrumbs']);
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -29,11 +26,11 @@ print_r($this->params['breadcrumbs']);
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                    如果您忘记密码，请<?= Html::a('点此重置。', ['site/request-password-reset']) ?>.
                 </div>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton('登陆', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

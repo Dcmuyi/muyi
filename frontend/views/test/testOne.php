@@ -71,7 +71,7 @@ use yii\helpers\Url;
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 </div>
 
-<script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?>"></script>
+<!--<script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?><!--"></script>-->
 <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?>"></script>
 <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/cropper.min.js' ?>"></script>
 <script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/js/main.js' ?>"></script>

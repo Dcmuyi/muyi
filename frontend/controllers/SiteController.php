@@ -51,47 +51,46 @@ class SiteController extends BaseController
 //            ],
         ];
     }
-
-    /**
-     * 发送邮件测试
-     * @return string
-     */
-    public function actionTest()
-    {
-        $user = [
-            'username' => '12321',
-            'password_reset_token' => 'asd334dasd21'
-        ];
-
-        $mail = Yii::$app->mailer->compose(
-            ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
-            ['user' => $user]
-        );
-
-        $mail->setTo('773724313@qq.com');
-
-        $mail->setSubject('测试邮件2');
-
-        if ($mail->send())
-        {
-            echo 2131;
-        }
-        else
-        {
-            echo 'dsfds';
-        }
-die;
-        Yii::$app->session->setFlash('info','1321dasasd');
-
-        return $this->render('test');
-
-    }
+//
+//    /**
+//     * 发送邮件测试
+//     * @return string
+//     */
+//    public function actionTest()
+//    {
+//        $user = [
+//            'username' => '12321',
+//            'password_reset_token' => 'asd334dasd21'
+//        ];
+//
+//        $mail = Yii::$app->mailer->compose(
+//            ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+//            ['user' => $user]
+//        );
+//
+//        $mail->setTo('773724313@qq.com');
+//
+//        $mail->setSubject('测试邮件2');
+//
+//        if ($mail->send())
+//        {
+//            echo 2131;
+//        }
+//        else
+//        {
+//            echo 'dsfds';
+//        }
+//die;
+//        Yii::$app->session->setFlash('info','1321dasasd');
+//
+//        return $this->render('test');
+//
+//    }
     /**
      * @inheritdoc
      */
     public function actions()
     {
-        Yii::$app->view->params['breadcrumbs'][] = ['label' => 'Test2s1', 'url' => Url::to(['re'])];
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -147,39 +146,6 @@ die;
     }
 
     /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    /**
      * Signs user up.
      *
      * @return mixed
@@ -210,11 +176,11 @@ die;
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', '邮件发送成功，请查看您的电子邮箱以获得进一步操作说明。');
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', '抱歉，邮件发送失败了。');
             }
         }
 
@@ -239,7 +205,7 @@ die;
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', '恭喜您，密码修改成功！');
 
             return $this->goHome();
         }
