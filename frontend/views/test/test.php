@@ -21,14 +21,18 @@
             editor = K.create('textarea[name="content"]', {
                 allowPreviewEmoticons : false,
                 resizeType : 1,
+                width : '600px',
+                height : '360px',
                 allowImageUpload : true,
-                cssPath : 'https://b2b.jkbsapp.com/kindeditor/plugins/code/prettify.css',
+                cssPath : 'https://www.zydc1104.top/kindeditor/plugins/code/prettify.css',
                 uploadJson : '<?php echo \yii\helpers\Url::to(['/upload/upload-img']) ?>',
                 items : [
                     'fontname', 'fontsize', 'code', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
                     'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
                     'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'table', '|', 'print', 'preview']
             });
+
+
             K('input[name=getHtml]').click(function(e) {
                 alert(editor.html());
             });
@@ -62,7 +66,7 @@
 <body>
 <h3>默认模式</h3>
 <form method="post">
-    <textarea name="content" style="width:800px;height:400px;visibility:hidden;"><?php echo empty($_POST['content']) ? '' : $_POST['content']?></textarea>
+    <textarea name="content" style="width:650px;height:350px;visibility:hidden;"><?php echo empty($_POST['content']) ? '' : $_POST['content']?></textarea>
     <p>
         <input type="button" name="getHtml" value="取得HTML" />
         <input type="button" name="isEmpty" value="判断是否为空" />

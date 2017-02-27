@@ -10,8 +10,8 @@ use yii\helpers\Url;
 ?>
 
 <head>
-    <link rel="stylesheet" href="<?php echo Yii::$app->params['b2bUrl'].'/cropper/cropper.min.css' ?>">
-    <link rel="stylesheet" href="<?php echo Yii::$app->params['b2bUrl'].'/cropper/css/main.css' ?>">
+    <link rel="stylesheet" href="<?php echo Yii::$app->params['webUrl'].'/cropper/cropper.min.css' ?>">
+    <link rel="stylesheet" href="<?php echo Yii::$app->params['webUrl'].'/cropper/css/main.css' ?>">
 </head>
 <body>
 <div class="container" id="crop-avatar">
@@ -71,8 +71,9 @@ use yii\helpers\Url;
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 </div>
 
-<!--<script src="--><?php //echo Yii::$app->params['b2bUrl'].'/cropper/jquery-1.12.4.min.js' ?><!--"></script>-->
-<script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/bootstrap.min.js' ?>"></script>
-<script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/cropper.min.js' ?>"></script>
-<script src="<?php echo Yii::$app->params['b2bUrl'].'/cropper/js/main.js' ?>"></script>
+<script src="<?php echo Yii::$app->params['webUrl'].'/cropper/bootstrap.min.js' ?>"></script>
+<script src="<?php echo Yii::$app->params['webUrl'].'/cropper/cropper.min.js' ?>"></script>
+<script src="<?php echo Yii::$app->params['webUrl'].'/cropper/js/main.js' ?>"></script>
+
+<script src="<?php echo Yii::$app->params['webUrl'].'/static/bootstrap.js' ?>"></script>
 </body>
