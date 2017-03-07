@@ -21,7 +21,7 @@ $this->title = '这是一个首页';
 </div>
 
 <div style="height: 1000px;">
-
+    <a href="tencent://message/?uin=773724313"><img border="0" src="http://wpa.qq.com/pa?p=2:773724313:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
 </div>
 
 <script src="<?php echo Yii::$app->params['webUrl'].'/carousel/js/Mds.onePic.1.0.js' ?>"></script>

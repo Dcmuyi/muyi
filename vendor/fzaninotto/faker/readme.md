@@ -991,6 +991,15 @@ echo $faker->siren; // 082 250 104
 echo $faker->siret; // 347 355 708 00224
 ```
 
+### `Faker\Provider\fr_FR\Person`
+
+```php
+<?php
+
+// Generates a random NIR / Sécurité Sociale number
+echo $faker->nir; // 1 88 07 35 127 571 - 19
+```
+
 ### `Faker\Provider\he_IL\Payment`
 
 ```php
@@ -1372,6 +1381,25 @@ echo $faker->personalIdentityNumber('female') // '950910-0781'
 // Generates a random bank name (based on list of real chinese banks)
 echo $faker->bank; // '中国建设银行'
 ```
+
+### `Faker\Provider\zh_TW\Person`
+
+```php
+<?php
+
+// Generates a random personal identify number
+echo $faker->personalIdentityNumber; // A223456789
+```
+
+### `Faker\Provider\zh_TW\Company`
+
+```php
+<?php
+
+// Generates a random VAT / Company Tax number
+echo $faker->VAT; //23456789
+```
+
 
 ## Third-Party Libraries Extending/Based On Faker
 

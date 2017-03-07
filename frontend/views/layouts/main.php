@@ -23,6 +23,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
 
     <style>
@@ -54,7 +55,7 @@ AppAsset::register($this);
         'brandLabel' => '<image class="header-logo" src="/up/logo.png" />',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-nav navbar-fixed-top navbar',
+            'class' => 'navbar-inverse navbar-fixed-top navbar',
         ],
     ]);
 
@@ -62,6 +63,8 @@ AppAsset::register($this);
         ['label' => '首页', 'url' => ['/site/index']],
         ['label' => '富文本', 'url' => ['/test/test']],
         ['label' => '上传图片', 'url' => ['/test/test-one']],
+        ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/site/index'], 'encode'=>false],
+        ['label' => '<i class="fa fa-bell"></i>', 'url' => ['/site/index'], 'encode'=>false],
     ];
 
     echo Nav::widget([
@@ -92,10 +95,17 @@ AppAsset::register($this);
     }
 
     echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
-    echo Html::textInput('q', '', ['class' => 'form-control phone-input']);
-    echo Html::button( '<image style="width: 5px;height:5px;" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />', ['class' => 'form-control']);
+    echo Html::textInput('q', '', ['class' => 'form-control phone-input', 'inputTemplate' => '<div class="input-group"><span class="input-group-addon">@</span>{input}</div>',]);
+    echo Html::button( '搜索', ['class' => 'form-control']);
 
     echo Html::endForm();
+
+//    echo $form->field($model, 'username', [
+//        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">@</span>{input}</div>',
+//        'inputOptions' => [
+//            'placeholder' => $model->getAttributeLabel('username'),
+//        ],
+//    ]);
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right nav-pills'],

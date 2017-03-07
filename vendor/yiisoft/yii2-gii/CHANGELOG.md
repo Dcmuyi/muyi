@@ -4,6 +4,15 @@ Yii Framework 2 gii extension Change Log
 2.0.6 under development
 -----------------------
 
+- Bug #97: Fixed errors and wrong directories created when using backslash in view paths and output paths of CRUD, Controller and Extension generators (lubosdz, samdark)
+- Bug #224: Add default validator with null value for integers when db is PostgreSQL (MKiselev)
+- Enh #223: Use ilike operator when generating search model for PostgreSQL (MKiselev)
+- Enh #241: Remove message for unique validator (MKiselev)
+- Enh #238: Use int/bool instead of integer/boolean in phpdoc blocks generated (MKiselev)
+- Bug #182: Fixed wrong link after generating controller located in sub-namespace of controllers namespace (MKiselev)
+- Enh #234: Changed submit button label from "Update" and "Create" to "Save" (MKiselev)
+- Bug #232: Fixed Help documentation link (drdim)
+- Enh #230: Allowed underscores for extension namespaces (Nex Otaku)
 - Bug #100, #102: Fixed "Check This File" button in the preview modal (Insensus, thiagotalma)
 - Bug #149: Relation names no longer override existing methods and properties (Faryshta)
 - Bug #152: Fixed generating model without any rules (and800)
@@ -15,8 +24,11 @@ Yii Framework 2 gii extension Change Log
 - Bug #179: Fixed indentation and newlines for Pjax widget in crud index view (nkovacs)
 - Bug #186: Fixed incorrect database name exception (zlakomanoff, shirase)
 - Bug #200: Fixed Pjax and Listview with CRUD generator (ariestattoo)
-- Chg: Updated version constraint for `yiisoft/yii2` in extension template to `~2.0.0` to ensure compatibility when 2.1 is released (cebe)
+- Enh #131: Allow using table comments for PHPdoc property description (stmswitcher, michaelarnauts)
+- Enh #252: Added meta tag to prevent indexing of debug by search engines in case it's exposed (bashkarev)
 - Enh: `yii\gii\Module::defaultVersion()` implemented to pick up 'yiisoft/yii2-gii' extension version (klimov-paul)
+- Chg: Updated version constraint for `yiisoft/yii2` in extension template to `~2.0.0` to ensure compatibility when 2.1 is released (cebe)
+
 
 2.0.5 March 18, 2016
 --------------------

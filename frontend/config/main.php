@@ -15,10 +15,14 @@ return [
     'controllerNamespace' => 'frontend\controllers',
 
     'modules' => [
+//        'admin' => [
+//            'class' => 'mdm\admin\Module',
+//            'layout' => 'left-menu',//yii2-admin的导航菜单
+//        ],
         'admin' => [
-            'class' => 'mdm\admin\Module',
+            'class' => 'frontend\modules\admin\Module',
             'layout' => 'left-menu',//yii2-admin的导航菜单
-        ]
+        ],
     ],
 
     'components' => [

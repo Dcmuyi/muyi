@@ -218,6 +218,7 @@ class Generator extends \yii\gii\Generator
                 'className' => $modelClassName,
                 'queryClassName' => $queryClassName,
                 'tableSchema' => $tableSchema,
+                'properties' => $this->generateProperties($tableSchema),
                 'labels' => $this->generateLabels($tableSchema),
                 'rules' => $this->generateRules($tableSchema),
                 'relations' => isset($relations[$tableName]) ? $relations[$tableName] : [],
@@ -239,6 +240,34 @@ class Generator extends \yii\gii\Generator
         }
 
         return $files;
+    }
+
+    /**
+     * Generates the properties for the specified table.
+     * @param \yii\db\TableSchema $table the table schema
+     * @return array the generated properties (property => type)
+     * @since 2.0.6
+     */
+    private function generateProperties($table)
+    {
+        $properties = [];
+        foreach ($table->columns as $column) {
+            $columnPhpType = $column->phpType;
+            if ($columnPhpType === 'integer') {
+                $type = 'int';
+            } elseif ($columnPhpType === 'boolean') {
+                $type = 'bool';
+            } else {
+                $type = $columnPhpType;
+            }
+            $properties[$column->name] = [
+                'type' => $type,
+                'name' => $column->name,
+                'comment' => $column->comment,
+            ];
+        }
+
+        return $properties;
     }
 
     /**
@@ -312,7 +341,11 @@ class Generator extends \yii\gii\Generator
             }
         }
         $rules = [];
+        $driverName = $this->getDbDriverName();
         foreach ($types as $type => $columns) {
+            if ($driverName === 'pgsql' && $type === 'integer') {
+                $rules[] = "[['" . implode("', '", $columns) . "'], 'default', 'value' => null]";
+            }
             $rules[] = "[['" . implode("', '", $columns) . "'], '$type']";
         }
         foreach ($lengths as $length => $columns) {
@@ -332,10 +365,8 @@ class Generator extends \yii\gii\Generator
                     if ($attributesCount === 1) {
                         $rules[] = "[['" . $uniqueColumns[0] . "'], 'unique']";
                     } elseif ($attributesCount > 1) {
-                        $labels = array_intersect_key($this->generateLabels($table), array_flip($uniqueColumns));
-                        $lastLabel = array_pop($labels);
                         $columnsList = implode("', '", $uniqueColumns);
-                        $rules[] = "[['$columnsList'], 'unique', 'targetAttribute' => ['$columnsList'], 'message' => 'The combination of " . implode(', ', $labels) . " and $lastLabel has already been taken.']";
+                        $rules[] = "[['$columnsList'], 'unique', 'targetAttribute' => ['$columnsList']]";
                     }
                 }
             }
@@ -560,7 +591,7 @@ class Generator extends \yii\gii\Generator
      *
      * @param TableSchema $table
      * @param array $fks
-     * @return boolean
+     * @return bool
      * @since 2.0.5
      */
     protected function isHasManyRelation($table, $fks)
@@ -597,7 +628,7 @@ class Generator extends \yii\gii\Generator
     /**
      * Checks if the given table is a junction table, that is it has at least one pair of unique foreign keys.
      * @param \yii\db\TableSchema the table being checked
-     * @return array|boolean all unique foreign key pairs if the table is a junction table,
+     * @return array|bool all unique foreign key pairs if the table is a junction table,
      * or false if the table is not a junction table.
      */
     protected function checkJunctionTable($table)
@@ -640,7 +671,7 @@ class Generator extends \yii\gii\Generator
      * @param array $relations the relations being generated currently.
      * @param \yii\db\TableSchema $table the table schema
      * @param string $key a base name that the relation name may be generated from
-     * @param boolean $multiple whether this is a has-many relation
+     * @param bool $multiple whether this is a has-many relation
      * @return string the relation name
      */
     protected function generateRelationName($relations, $table, $key, $multiple)
@@ -803,7 +834,7 @@ class Generator extends \yii\gii\Generator
     /**
      * Generates a class name from the specified table name.
      * @param string $tableName the table name (which may contain schema prefix)
-     * @param boolean $useSchemaName should schema name be included in the class name, if present
+     * @param bool $useSchemaName should schema name be included in the class name, if present
      * @return string the generated class name
      */
     protected function generateClassName($tableName, $useSchemaName = null)
@@ -866,10 +897,21 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
+     * @return string driver name of db connection.
+     * @since 2.0.6
+     */
+    protected function getDbDriverName()
+    {
+        /** @var Connection $db */
+        $db = $this->getDbConnection();
+        return $db->driverName;
+    }
+
+    /**
      * Checks if any of the specified columns is auto incremental.
      * @param \yii\db\TableSchema $table the table schema
      * @param array $columns columns to check for autoIncrement property
-     * @return boolean whether any of the specified columns is auto incremental.
+     * @return bool whether any of the specified columns is auto incremental.
      */
     protected function isColumnAutoIncremental($table, $columns)
     {
