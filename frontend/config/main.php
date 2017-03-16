@@ -34,7 +34,7 @@ return [
             'identityClass' => 'common\models\User',
             'identityCookie' => ['name' => '_identity-test', 'httpOnly' => true],
             'enableAutoLogin' => true,
-            'loginUrl'=> '/site/login',
+            'loginUrl'=> '/site/login.html',
         ],
 
         'session' => [
@@ -60,6 +60,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'suffix' => '.html',
+            'rules' => [
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+            ]
         ],
 
         'authManager' => [

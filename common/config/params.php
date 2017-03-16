@@ -24,4 +24,11 @@ return [
         'OSS_ENDPOINT'=>'jkbs.oss-cn-hangzhou.aliyuncs.com',
         'OSS_BUCKET'=>'jkbs'
     ],
+
+    //文章分类
+    'articleCategory' => [
+        '1' => 'PHP',
+        '2' => 'MYSQL',
+        '3' => 'Vue'
+    ]
 ];

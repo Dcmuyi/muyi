@@ -24,6 +24,9 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="<?php echo Yii::$app->params['webUrl'].'/static/site.css' ?>" rel="stylesheet">
+
     <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
 
     <style>
@@ -43,6 +46,10 @@ AppAsset::register($this);
         h1 {
             font-size: 18px;
             font-weight: bold;
+        }
+
+        .row {
+            margin: 0 -10px;
         }
     </style>
 </head>
