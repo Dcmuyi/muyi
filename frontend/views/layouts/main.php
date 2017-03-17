@@ -33,7 +33,7 @@ AppAsset::register($this);
         .header-logo {
             width: 36px;
             height: 36px;
-            margin-top: -8px;
+            margin-top: 8px;
             margin-bottom: -12px;
         }
         .user-pic {
@@ -41,15 +41,6 @@ AppAsset::register($this);
             height: 36px;
             margin-top: -13px;
             margin-bottom: -12px;
-        }
-
-        h1 {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .row {
-            margin: 0 -10px;
         }
     </style>
 </head>
@@ -80,8 +71,6 @@ AppAsset::register($this);
         'encodeLabels' => false,
     ]);
 
-    $menuItems[] = ['label' => '<li class="fa fa-bell"></li>', 'url' => ['/site/signup']];
-
     if (Yii::$app->user->isGuest)
     {
         $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
@@ -89,20 +78,25 @@ AppAsset::register($this);
     }
     else
     {
+        $menuItems[] = ['label' => '<i class="fa fa-bell-o"></i><span style="color: red"></span>', 'url' => ['/site/signup']];
+
         $menuItems[] = [
-            'label' => '<image class="user-pic" src="https://www.zydc1104.top/up/pic/2017/02/22/0AQV50zcz3.jpg" />',
-//            'label' => Yii::$app->user->identity->username,
+            'label' => '<image class="user-pic" src="https://www.zydc1104.top/up/head_pic1.png" />',
             'items' => [
-                ['label' => '测试111', 'url' => '#'],
+                ['label' => '<i class="fa fa-user fa-fw"></i> 个人中心', 'url' => '#'],
+                ['label' => '<i class="fa fa-camera fa-fw"></i> 修改头像', 'url' => '#'],
                 '<li class="divider"></li>',
-                ['label' => '测试222', 'url' => '#'],
-                ['label' => '退出', 'url' =>['/site/logout']],
+                ['label' => '<i class="fa fa-list fa-fw"></i> 我的发布', 'url' => '#'],
+                ['label' => '<i class="fa fa-star fa-fw"></i> 我的收藏', 'url' => '#'],
+                '<li class="divider"></li>',
+                ['label' => '<i class="fa fa-sign-out fa-fw"></i> 退出登陆', 'url' =>['/site/logout']],
             ],
         ];
     }
 
+    //搜索框
     echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
-    echo Html::textInput('q', '', ['class' => 'form-control phone-input', 'inputTemplate' => '<div class="input-group"><span class="input-group-addon">@</span>{input}</div>',]);
+    echo Html::textInput('keyword', '', ['class' => 'form-control phone-input']);
     echo Html::button( '搜索', ['class' => 'form-control']);
 
     echo Html::endForm();

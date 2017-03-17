@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 
@@ -12,7 +12,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class ArticleContentModel extends \common\models\BaseModel
+class ArticleContentModel extends BaseModel
 {
     /**
      * @inheritdoc

@@ -7,12 +7,12 @@
  */
 namespace frontend\controllers;
 
-use common\components\CommonHelper;
-use frontend\models\ArticleContentModel;
-use frontend\models\ArticleModel;
 use Yii;
+use yii\base\Exception;
 use yii\filters\AccessControl;
-use yii\helpers\Url;
+use common\models\ArticleModel;
+use common\components\CommonHelper;
+use common\models\ArticleContentModel;
 
 /**
  * Class ArticleController
@@ -57,24 +57,33 @@ class ArticleController extends BaseController
         if (Yii::$app->request->post()) {
             $userId = Yii::$app->user->id;
 
-            $model->load(Yii::$app->request->post());
-            $model->user_id = $userId;
+            //事物
+            $tran = Yii::$app->db->beginTransaction();
+            try {
+                $model->load(Yii::$app->request->post());
+                $model->user_id = $userId;
 
-            if (!$model->save()) {
-                CommonHelper::setFlash('error', '添加文章失败');
+                if (!$model->save()) {
+                    throw new Exception('添加文章失败');
+                }
+
+                $content = Yii::$app->request->post('content');
+                $contentModel->content = $content;
+                $contentModel->article_id = $model->id;
+
+                if (!$contentModel->save()) {
+                    throw new Exception('添加文章失败');
+                }
+
+                CommonHelper::setFlash('success', '添加成功');
+
+                $tran->commit();
+                $this->redirect('index.html')->send();
+
+            } catch (Exception $e) {
+                $tran->rollBack();
+                CommonHelper::setFlash('error', $e->getMessage());
             }
-
-            $content = Yii::$app->request->post('content');
-            $contentModel->content = $content;
-            $contentModel->article_id = $model->id;
-
-            if (!$contentModel->save()) {
-                CommonHelper::setFlash('error', '添加文章失败');
-            }
-
-            CommonHelper::setFlash('success', '添加成功');
-
-            $this->redirect('index.html')->send();
         }
 
         return $this->render('create', [
@@ -86,6 +95,16 @@ class ArticleController extends BaseController
     public function actionView()
     {
         $id = Yii::$app->request->get('id');
+
+        $article = ArticleModel::findOne($id);
+        $content = ArticleContentModel::findOne($id);
+        $user = User::findOne($article->user_id);
+
+        //没有信息跳转404
+        if (empty($article) || empty($content)) {
+            $this->redirect(['site/error'])->send();
+        }
+
 
         echo $id;die;
     }
