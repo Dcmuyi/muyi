@@ -4,10 +4,13 @@ return [
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
 
-    'agent' => [
-        '0' => '男',
-        '1' => '女',
+    'sex' => [
+        '0' => '保密',
+        '1' => '男',
+        '2' => '女',
     ],
+
+    'pageSize' => '20',
 
     'staticUrl' => 'http://b2b.jkbsapp.com/static/',
 
@@ -29,6 +32,7 @@ return [
     'articleCategory' => [
         '1' => 'PHP',
         '2' => 'MYSQL',
-        '3' => 'Vue'
+        '3' => 'Vue',
+        '100' => '其他',
     ]
 ];

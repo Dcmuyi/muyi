@@ -10,6 +10,8 @@ use Yii;
  * @property int $id
  * @property string $username 昵称
  * @property string $pic 头像
+ * @property string $pic_small
+ * @property int $sex
  * @property string $email 邮箱
  * @property string $auth_key 免登陆秘钥
  * @property string $password_hash 密码
@@ -37,8 +39,8 @@ class UserModel extends BaseModel
     {
         return [
             [['username', 'email', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
-            [['group_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'pic', 'email', 'password_hash', 'password_reset_token', 'signature'], 'string', 'max' => 255],
+            [['sex', 'group_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'pic', 'pic_small', 'email', 'password_hash', 'password_reset_token', 'signature'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -55,6 +57,8 @@ class UserModel extends BaseModel
             'id' => 'ID',
             'username' => '昵称',
             'pic' => '头像',
+            'pic_small' => '小头像',
+            'sex' => '性别',
             'email' => '邮箱',
             'auth_key' => '免登陆秘钥',
             'password_hash' => '密码',

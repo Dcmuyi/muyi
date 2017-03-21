@@ -24,9 +24,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
     <link href="<?php echo Yii::$app->params['webUrl'].'/static/site.css' ?>" rel="stylesheet">
-
     <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
 
     <style>
@@ -59,7 +57,7 @@ AppAsset::register($this);
 
     $menuItemsLeft = [
         ['label' => '首页', 'url' => ['/site/index']],
-        ['label' => '富文本', 'url' => ['/test/test']],
+        ['label' => '文章', 'url' => ['/article/index']],
         ['label' => '上传图片', 'url' => ['/test/test-one']],
         ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/site/index'], 'encode'=>false],
         ['label' => '<i class="fa fa-bell"></i>', 'url' => ['/site/index'], 'encode'=>false],
@@ -78,13 +76,13 @@ AppAsset::register($this);
     }
     else
     {
-        $menuItems[] = ['label' => '<i class="fa fa-bell-o"></i><span style="color: red"></span>', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => '<i class="fa fa-bell"></i><span style="color: red"></span>', 'url' => ['/site/signup']];
 
         $menuItems[] = [
-            'label' => '<image class="user-pic" src="https://www.zydc1104.top/up/head_pic1.png" />',
+            'label' => '<image class="user-pic" src = '.Yii::$app->user->identity->pic_small.' />',
             'items' => [
-                ['label' => '<i class="fa fa-user fa-fw"></i> 个人中心', 'url' => '#'],
-                ['label' => '<i class="fa fa-camera fa-fw"></i> 修改头像', 'url' => '#'],
+                ['label' => '<i class="fa fa-user fa-fw"></i> 个人中心', 'url' => ['/user/info']],
+                ['label' => '<i class="fa fa-camera fa-fw"></i> 修改头像', 'url' => ['/user/pic']],
                 '<li class="divider"></li>',
                 ['label' => '<i class="fa fa-list fa-fw"></i> 我的发布', 'url' => '#'],
                 ['label' => '<i class="fa fa-star fa-fw"></i> 我的收藏', 'url' => '#'],
@@ -128,7 +126,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Mu Yi <?= '2016 - '.date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

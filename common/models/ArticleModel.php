@@ -55,4 +55,9 @@ class ArticleModel extends BaseModel
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }

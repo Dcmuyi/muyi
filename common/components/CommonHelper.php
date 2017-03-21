@@ -39,4 +39,47 @@ class CommonHelper{
     {
         Yii::$app->end(json_encode($data));
     }
+
+    /**
+     * 获取分页offset
+     * @param $page
+     * @param $pageSize
+     * @return bool|int
+     */
+    public static function getOffset($page, $pageSize)
+    {
+        $offset = ($page-1) * $pageSize;
+
+        return $offset < 0 ? 0 : $offset;
+    }
+
+    /**
+     * 友好时间显示
+     * @param $sTime
+     * @return false|string
+     */
+    public static function friendlyDate($sTime)
+    {
+        if (empty($sTime)) {
+            return 'N久之前';
+        }
+
+        //sTime=源时间，cTime=当前时间，dTime=时间差
+        $cTime      =   time();
+        $dTime      =   $cTime - $sTime;
+        $dDay     =   intval($dTime/3600/24);
+
+        //normal：n秒前，n分钟前，n小时前，日期
+        if( $dTime < 60 ) {
+            return $dTime."秒前";
+        } elseif( $dTime < 3600 ) {
+            return intval($dTime/60)."分钟前";
+        } elseif( $dTime >= 3600 && $dDay == 0) {
+            return intval($dTime/3600)."小时前";
+        } elseif ($dDay > 0 && $dDay < 3) {
+            return $dDay.'天前';
+        } else {
+            return date("Y-m-d",$sTime);
+        }
+    }
 }
