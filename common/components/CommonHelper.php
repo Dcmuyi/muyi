@@ -9,7 +9,8 @@ namespace common\components;
 
 use Yii;
 
-class CommonHelper{
+class CommonHelper
+{
     /**
      * 生成随机字符串
      * @param $len
@@ -56,9 +57,10 @@ class CommonHelper{
     /**
      * 友好时间显示
      * @param $sTime
+     * @param bool $showSecond
      * @return false|string
      */
-    public static function friendlyDate($sTime)
+    public static function friendlyDate($sTime, $showSecond=false)
     {
         if (empty($sTime)) {
             return 'N久之前';
@@ -71,7 +73,7 @@ class CommonHelper{
 
         //normal：n秒前，n分钟前，n小时前，日期
         if( $dTime < 60 ) {
-            return $dTime."秒前";
+            return "刚刚";
         } elseif( $dTime < 3600 ) {
             return intval($dTime/60)."分钟前";
         } elseif( $dTime >= 3600 && $dDay == 0) {
@@ -79,7 +81,7 @@ class CommonHelper{
         } elseif ($dDay > 0 && $dDay < 3) {
             return $dDay.'天前';
         } else {
-            return date("Y-m-d",$sTime);
+            return $showSecond ? date("Y-m-d H:i:s",$sTime) : date("Y-m-d",$sTime);
         }
     }
 }

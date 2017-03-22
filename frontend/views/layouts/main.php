@@ -58,9 +58,8 @@ AppAsset::register($this);
     $menuItemsLeft = [
         ['label' => '首页', 'url' => ['/site/index']],
         ['label' => '文章', 'url' => ['/article/index']],
-        ['label' => '上传图片', 'url' => ['/test/test-one']],
-        ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/site/index'], 'encode'=>false],
-        ['label' => '<i class="fa fa-bell"></i>', 'url' => ['/site/index'], 'encode'=>false],
+//        ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/site/index'], 'encode'=>false],
+//        ['label' => '<i class="fa fa-bell"></i>', 'url' => ['/site/index'], 'encode'=>false],
     ];
 
     echo Nav::widget([
@@ -98,13 +97,6 @@ AppAsset::register($this);
     echo Html::button( '搜索', ['class' => 'form-control']);
 
     echo Html::endForm();
-
-//    echo $form->field($model, 'username', [
-//        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">@</span>{input}</div>',
-//        'inputOptions' => [
-//            'placeholder' => $model->getAttributeLabel('username'),
-//        ],
-//    ]);
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right nav-pills'],

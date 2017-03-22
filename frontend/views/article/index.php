@@ -6,8 +6,8 @@
  * Time: 16:29
  */
 
-use yii\widgets\LinkPager;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 use common\components\CommonHelper;
 
 $this->title = '文章';
@@ -48,7 +48,7 @@ $category = Yii::$app->params['articleCategory'];
                         </h2>
 
                         <div class="media-action">
-                            <a href="#"><?= $v['username'] ?></a> 提问于 <?= CommonHelper::friendlyDate($v['created_at']) ?><span class="glyphicon glyphicon-tag ml-10"></span> <?= $category[$v['category']] ?>
+                            <a href="#"><?= $v['username'] ?></a> 发布于 <?= CommonHelper::friendlyDate($v['created_at']) ?><span class="glyphicon glyphicon-tag ml-10"></span> <?= $category[$v['category']] ?>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@ $category = Yii::$app->params['articleCategory'];
                     </div>
 
                     <div class="media-right">
-                        <a class="btn btn-default" href="<?= Url::to([sprintf('/article/%s', $v['id'])]) ?>">
+                        <a class="btn btn-default" href="<?= Url::toRoute([sprintf('/article/%s', $v['id']), '#' => 'review-list']) ?>">
                             <h4>回复</h4>
                             <?= $v['review_times'] ?>
                         </a>
@@ -80,7 +80,7 @@ $category = Yii::$app->params['articleCategory'];
         <a class="btn btn-success btn-block" href="<?= Url::to(['create']) ?>">我要发布</a>
 
         <div class="list-group">
-            <a class="list-group-item <?= empty($_GET['category']) ? 'active' : '' ?>" href= "<?= Url::current() ?>">
+            <a class="list-group-item <?= empty($_GET['category']) ? 'active' : '' ?>" href= "<?= Url::to('index.html') ?>">
                 <span class="badge pull-right"><?= $chart['0'] ?></span>
                 所有分类
             </a>

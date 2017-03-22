@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\ArticleModel;
 use Yii;
 use common\models\LoginForm;
 use yii\filters\AccessControl;
@@ -103,7 +104,17 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $articleList = ArticleModel::find()
+            ->select(['article.id', 'article.title', 'article.category', 'article.visit_times', 'article.review_times', 'article.created_at', 'user.username'])
+            ->joinWith('user', false)
+            ->orderBy('article.id DESC')
+            ->limit(5)
+            ->asArray()
+            ->all();
+
+        return $this->render('index', [
+            'articleList' => $articleList
+        ]);
     }
 
     /**

@@ -5,10 +5,10 @@
  * Date: 2017/3/21
  * Time: 15:59
  */
-use yii\helpers\Html;
 use yii\helpers\Url;
-use common\components\CommonHelper;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\components\CommonHelper;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => '文章', 'url' => ['index']];
@@ -62,7 +62,7 @@ $category = Yii::$app->params['articleCategory'];
             </span>
 
             <span>
-                <i class="fa fa-clock-o"></i> <?= CommonHelper::friendlyDate($model['created_at']) ?>
+                <i class="fa fa-clock-o"></i> <?= CommonHelper::friendlyDate($model['created_at'], true) ?>
             </span>
 
             <span>
@@ -128,22 +128,20 @@ $category = Yii::$app->params['articleCategory'];
     </div>
 
     <div class="col-lg-3">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <img src="<?= $user['pic'] ?>">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">作者资料</h3>
+            </div>
+            <div class="panel-body" style="background: url('/up/backgroud.jpg'); background-size:100% 100%; background-repeat:no-repeat;">
+                <div class="user">
+                    <img class="avatar" alt="<?= $user['username'] ?>" src="<?= $user['pic'] ?>">
+
+                    <h1><?= $user['username'] ?></h1>
+                    <p><?= empty($user['signature']) ? '这家伙很懒，什么都没有留下' : $user['signature'] ?></p>
+                </div>
             </div>
         </div>
 
-        <div class="list-group">
-            <a class="list-group-item <?= empty($_GET['category']) ? 'active' : '' ?>" href= "<?= Url::current() ?>">
-                所有分类
-            </a>
-
-            <?php foreach ($category as $k => $v) : ?>
-                <a class="list-group-item <?= (isset($_GET['category']) && $k==$_GET['category']) ? 'active' : '' ?>" href= "<?= Url::current(['category'=>$k]) ?>">
-                    <?= $v ?>
-                </a>
-            <?php endforeach; ?>
-        </div>
+        <a class="btn btn-success btn-block" href="<?= Url::to(['create']) ?>"><i class="fa fa-plus"></i> 我要发布</a>
     </div>
 </div>

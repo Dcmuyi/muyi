@@ -15,7 +15,7 @@ return [
                 'class' => 'Swift_SmtpTransport', //使用的类
                 'host' => 'smtp.qq.com', //邮箱服务一地址
                 'username' => '773724313@qq.com',//邮箱地址，发送的邮箱
-                'password' => 'hqfdpfzakphpbfdd',  //自己填写邮箱密码
+                'password' => 'korvrzxwncznbajh',  //自己填写邮箱密码
                 'port' => '465',  //服务器端口
                 'encryption' => 'ssl', //加密方式
             ],

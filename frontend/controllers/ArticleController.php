@@ -7,17 +7,16 @@
  */
 namespace frontend\controllers;
 
-use common\models\ArticleReviewModel;
-use common\models\UserModel;
-use frontend\modules\admin\models\searchs\User;
 use Yii;
+use yii\helpers\Url;
 use yii\base\Exception;
 use yii\data\Pagination;
+use common\models\UserModel;
 use yii\filters\AccessControl;
 use common\models\ArticleModel;
 use common\components\CommonHelper;
+use common\models\ArticleReviewModel;
 use common\models\ArticleContentModel;
-use yii\widgets\LinkPager;
 
 /**
  * Class ArticleController
@@ -78,7 +77,7 @@ class ArticleController extends BaseController
         }
 
         //统计
-        $data = ['0' => $count];
+        $data = ['0' => ArticleModel::find()->count()];
         foreach (Yii::$app->params['articleCategory'] as $k => $v) {
             $data[$k] = ArticleModel::find()
                 ->andFilterWhere(['category' => $k])
@@ -150,6 +149,7 @@ class ArticleController extends BaseController
             $this->redirect(['site/error'])->send();
         }
 
+        //回复model
         $reviewModel = new ArticleReviewModel();
 
         if (Yii::$app->request->post()) {
@@ -158,13 +158,24 @@ class ArticleController extends BaseController
             $reviewModel->article_id = $id;
             $reviewModel->user_id = Yii::$app->user->id;
 
-            $reviewModel->save();
+            if ($reviewModel->save()) {
+                $article->review_times += 1;
+
+                $article->save();
+            }
+
+            $this->redirect(Url::current(['#'=>'review-list']))->send();
         }
+
+        //浏览次数+1
+        $article->visit_times += 1;
+        $article->save();
 
         $reviewList = ArticleReviewModel::find()
             ->select(['article_review.*', 'user.username', 'user.pic_small'])
             ->innerJoin(UserModel::tableName(), 'user.id = article_review.user_id')
             ->andWhere(['article_id' => $id])
+            ->orderBy('article_review.id DESC')
             ->asArray()
             ->all();
 

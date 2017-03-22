@@ -24,7 +24,7 @@ class CommonController extends BaseController
         {
             Yii::$app->session->set($this->returnUrlParam, Yii::$app->request->absoluteUrl);
 
-            $this->redirect(Url::to([Yii::$app->user->loginUrl]))->send();
+            $this->redirect(Yii::$app->user->loginUrl)->send();
 
             Yii::$app->end();
         }
