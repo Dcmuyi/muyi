@@ -14,6 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <head>
+    <style>
+        .ke-dialog-row {
+            margin: 50px 0 10px 20px;
+        }
+    </style>
     <link rel="stylesheet" href="<?php echo Yii::$app->params['webUrl'].'/kindeditor/themes/default/default.css' ?>" />
     <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/kindeditor-min.js' ?>"></script>
     <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/lang/zh_CN.js' ?>"></script>
@@ -24,11 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
         var editor;
         KindEditor.ready(function(K) {
             editor = K.create('textarea[name="content"]', {
-                allowPreviewEmoticons : false,
                 resizeType : 0,
                 width : '100%',
                 height : '400px',
                 allowImageUpload : true,
+                allowImageRemote : false,
+                allowPreviewEmoticons : false,
                 cssPath : 'https://www.zydc1104.top/kindeditor/plugins/code/prettify.css',
                 uploadJson : '<?php echo \yii\helpers\Url::to(['/upload/upload-img']) ?>',
                 items : [
