@@ -46,48 +46,50 @@ $category = Yii::$app->params['articleCategory'];
         </div>
 
         <div class="panel-body">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th width="10%">发布者</th>
-                    <th width="10%">时间</th>
-                    <th width="10%">回复</th>
-                    <th width="10%">浏览</th>
-                </tr>
-                </thead>
-
-                <?php foreach ($articleList as $article) : ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
                     <tr>
-                        <td class="title">
+                        <th>内容</th>
+                        <th width="10%">发布者</th>
+                        <th width="10%">时间</th>
+                        <th width="10%">浏览</th>
+                        <th width="10%">回复</th>
+                    </tr>
+                    </thead>
+
+                    <?php foreach ($articleList as $article) : ?>
+                        <tr>
+                            <td class="title">
                             <span>
                                 [ <a style="color: orangered" href="<?= Url::toRoute(['article/index', 'category' => $article['category']]) ?>"><?= $category[$article['category']] ?></a> ]
                             </span>
 
-                            <span>
+                                <span>
                                 <a href="<?= Url::to([sprintf('/article/%s', $article['id'])]) ?>"><?= $article['title'] ?></a>
                             </span>
-                        </td>
+                            </td>
 
-                        <td>
-                            <?= $article['username'] ?>
-                        </td>
+                            <td>
+                                <?= $article['username'] ?>
+                            </td>
 
-                        <td>
-                            <?= CommonHelper::friendlyDate($article['created_at']) ?>
-                        </td>
+                            <td>
+                                <?= CommonHelper::friendlyDate($article['created_at']) ?>
+                            </td>
 
-                        <td>
-                            <?= $article['visit_times'] ?>
-                        </td>
+                            <td>
+                                <?= $article['visit_times'] ?>
+                            </td>
 
-                        <td>
-                            <?= $article['review_times'] ?>
-                        </td>
+                            <td>
+                                <?= $article['review_times'] ?>
+                            </td>
 
-                    </tr>
-                <?php endforeach; ?>
-            </table>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
         </div>
     </div>
 

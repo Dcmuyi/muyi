@@ -18,6 +18,7 @@ use Yii;
  * @property string $password_reset_token 重置密码秘钥
  * @property string $signature 个性签名
  * @property int $group_id 用户群
+ * @property int $last_active_at
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
@@ -39,7 +40,7 @@ class UserModel extends BaseModel
     {
         return [
             [['username', 'email', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
-            [['sex', 'group_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['sex', 'group_id', 'last_active_at', 'status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'pic', 'pic_small', 'email', 'password_hash', 'password_reset_token', 'signature'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
@@ -65,6 +66,7 @@ class UserModel extends BaseModel
             'password_reset_token' => '重置密码秘钥',
             'signature' => '个性签名',
             'group_id' => '用户群',
+            'last_active_at' => '最后活跃时间',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

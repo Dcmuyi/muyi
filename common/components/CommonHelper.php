@@ -7,6 +7,7 @@
  */
 namespace common\components;
 
+use common\models\UserModel;
 use Yii;
 
 class CommonHelper
@@ -19,6 +20,32 @@ class CommonHelper
     public static function randomString($len)
     {
         return Yii::$app->getSecurity()->generateRandomString($len);
+    }
+
+    /**
+     * 获取用户列表
+     * @param $userIdList
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getUserList($userIdList)
+    {
+        $sex = Yii::$app->params['sex'];
+
+        $userList = UserModel::find()
+            ->select(['id', 'username', 'pic', 'pic_small', 'last_active_at', 'created_at', 'sex', 'signature'])
+            ->andWhere(['id' => $userIdList])
+            ->asArray()
+            ->indexBy('id')
+            ->all();
+
+        foreach ($userList as &$user) {
+            $user['created_time'] = self::friendlyDate($user['created_at']);
+            $user['active_time'] = self::friendlyDate($user['last_active_at']);
+            $user['sex'] = $sex[$user['sex']];
+        }
+        unset($user);
+
+        return $userList;
     }
 
     /**

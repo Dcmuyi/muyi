@@ -14,7 +14,28 @@ $this->title = '文章';
 $this->params['breadcrumbs'][] = $this->title;
 
 $category = Yii::$app->params['articleCategory'];
+//
+//data-trigger="hover" data-placement="right" data-html="true" data-content="<div class='panel panel-warning'>
+//                        <div class='panel-heading'>
+//                            <h3 class='panel-title'>作者资料</h3>
+//                        </div>
+//                    </div>"
 ?>
+<style>
+    .popover-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    .popover-top {
+        border-bottom: #eee solid 1px;
+    }
+
+    .in-line {
+        display: inline-block;
+    }
+</style>
 
 <div class="row">
     <div class="col-lg-9">
@@ -33,7 +54,10 @@ $category = Yii::$app->params['articleCategory'];
             <?php foreach ($result as $v) : ?>
                 <li class="media">
                     <div class="media-left">
-                        <img class="media-object" src="<?= $v['pic_small'] ?>">
+                        <a href="#" id="<?=$v['user_id'] ?>" data-toggle="popover">
+                            <img class="media-object" src="<?= $userList[$v['user_id']]['pic_small'] ?>">
+                        </a>
+
                     </div>
 
                     <div class="media-body">
@@ -48,7 +72,7 @@ $category = Yii::$app->params['articleCategory'];
                         </h2>
 
                         <div class="media-action">
-                            <a href="#"><?= $v['username'] ?></a> 发布于 <?= CommonHelper::friendlyDate($v['created_at']) ?><span class="glyphicon glyphicon-tag ml-10"></span> <?= $category[$v['category']] ?>
+                            <a href="#"><?= $userList[$v['user_id']]['username'] ?></a> 发布于 <?= CommonHelper::friendlyDate($v['created_at']) ?><span class="glyphicon glyphicon-tag ml-10"></span> <?= $category[$v['category']] ?>
                         </div>
                     </div>
 
@@ -94,3 +118,40 @@ $category = Yii::$app->params['articleCategory'];
         </div>
     </div>
 </div>
+
+<script>
+    var user_list = <?= json_encode($userList) ?>;
+
+    $(function() {
+        $('[data-toggle="popover"]').each(function () {
+            var element = $(this);
+            var id = element.attr('id');
+            console.log(id);
+            element.popover({
+                trigger: 'hover',
+                placement: 'right', //top, bottom, left or right
+                title: '用户资料',
+                html: 'true',
+                content: ContentMethod(id)
+            })
+        });
+    });
+
+    function ContentMethod(id) {
+        var name = user_list[id]['username'];
+        var active_time = user_list[id]['active_time'];
+        var created_time = user_list[id]['created_time'];
+        var sex = user_list[id]['sex'];
+        var pic = user_list[id]['pic'];
+        var sign = user_list[id]['signature'];
+        if (sign.length == 0) {
+            sign = '这家伙很懒，什么都没有留下';
+        }
+
+        return '<div class="popover-top"><div class="media-left" style="text-align: center"><img class="popover-pic" src="'+ pic +'"><span class="label label-success">极道魔尊</span></div><div class="media-right">' +
+        '<p>'+ name + '(' + sex + ')</p>' +
+        '<p><span class="in-line">注册日期：</span>'+ created_time +'</p>' +
+        '<p><span class="in-line">最后活跃：</span><span class="in-line">'+ active_time +'</span></p>' +
+        '</div></div> <p>'+ sign +'</p>';
+    }
+</script>

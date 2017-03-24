@@ -7,6 +7,7 @@
  */
 namespace frontend\controllers;
 
+use frontend\modules\admin\models\searchs\User;
 use Yii;
 use yii\helpers\Url;
 use yii\base\Exception;
@@ -53,8 +54,6 @@ class ArticleController extends BaseController
         $category = Yii::$app->request->get('category');
 
         $query = $queryCount = ArticleModel::find()
-            ->select(['article.*', 'user.username', 'user.pic_small'])
-            ->joinWith('user', false)
             ->andFilterWhere(['category' => $category])
             ->asArray();
 
@@ -86,8 +85,13 @@ class ArticleController extends BaseController
 
         $result = $query->offset($pages->offset)->limit($pages->limit)->orderBy($order)->all();
 
+        //用户信息
+        $userIdList = array_column($result, 'user_id');
+        $userList = CommonHelper::getUserList($userIdList);
+
         return $this->render('index', [
             'result' => $result,
+            'userList' => $userList,
             'chart' => $data,
             'pages' => $pages
         ]);

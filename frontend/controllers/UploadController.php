@@ -98,14 +98,13 @@ class UploadController extends CommonController
 
             $model->imageFile = UploadedFile::getInstanceByName("imgFile");
 
-            print_r(Yii::$app->user->identity);die;
             //非管理员只能传1M图片
-            if ($model->imageFile->size > 1024 * 1024 && Yii::$app->user->identity->group_id = 0) {
+            if ($model->imageFile->size > 1024 * 1024 && Yii::$app->user->identity->group_id == 0) {
                 throw new Exception('图片太大了,服务器承受不来~');
             }
 
             $uploadFile = $model->upload('pic');
-            if($uploadFile){
+            if($uploadFile) {
 //                $oss = new Oss();
 //                $oss->upload($uploadFile,$uploadFile);
 
