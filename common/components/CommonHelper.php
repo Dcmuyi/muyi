@@ -39,7 +39,7 @@ class CommonHelper
             ->all();
 
         foreach ($userList as &$user) {
-            $user['created_time'] = self::friendlyDate($user['created_at']);
+            $user['created_time'] = date('Y-m-d', $user['created_at']);
             $user['active_time'] = self::friendlyDate($user['last_active_at']);
             $user['sex'] = $sex[$user['sex']];
         }

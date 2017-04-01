@@ -151,7 +151,7 @@ $category = Yii::$app->params['articleCategory'];
         return '<div class="popover-top"><div class="media-left" style="text-align: center"><img class="popover-pic" src="'+ pic +'"><span class="label label-success">极道魔尊</span></div><div class="media-right">' +
         '<p>'+ name + '(' + sex + ')</p>' +
         '<p><span class="in-line">注册日期：</span>'+ created_time +'</p>' +
-        '<p><span class="in-line">最后活跃：</span><span class="in-line">'+ active_time +'</span></p>' +
+        '<p><span class="in-line">最后活跃：</span><br>'+ active_time +'</p>' +
         '</div></div> <p>'+ sign +'</p>';
     }
 </script>

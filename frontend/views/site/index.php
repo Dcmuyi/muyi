@@ -109,16 +109,17 @@ $category = Yii::$app->params['articleCategory'];
         </div>
     </div>
 
-    <a href="tencent://message/?uin=773724313"><img border="0" src="http://wpa.qq.com/pa?p=2:773724313:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+    <a href="http://www.baidu.com">asd</a>
+<!--    <a href="tencent://message/?uin=773724313"><img border="0" src="http://wpa.qq.com/pa?p=2:773724313:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>-->
 </div>
 
 <script>
     window.onblur = function() {
         document.title = "发呆- ( ゜- ゜)つロ ";
-        $("#web-icon").attr('href',"https://wujunze.com/usr/themes/yilia/loss.ico");
+        $("#web-icon").attr('href',"/up/logo_back.png");
         window.onfocus = function() {
             document.title = "这是一个首页";
-            $("#web-icon").attr('href',"https://www.zydc1104.top/up/logo.png");
+            $("#web-icon").attr('href',"/up/logo.png");
         }
     };
 </script>
