@@ -58,6 +58,7 @@ AppAsset::register($this);
     $menuItemsLeft = [
         ['label' => '首页', 'url' => ['/site/index']],
         ['label' => '文章', 'url' => ['/article/index']],
+        ['label' => '前端', 'url' => ['/test/test']],
 //        ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/site/index'], 'encode'=>false],
 //        ['label' => '<i class="fa fa-bell"></i>', 'url' => ['/site/index'], 'encode'=>false],
     ];

@@ -14,12 +14,6 @@ class TestController extends CommonController
 {
     public function actionTest()
     {
-        if (Yii::$app->request->getIsPost())
-        {
-            $content = Html::encode(Yii::$app->request->post('content'));
-
-        }
-
         return $this->render('test');
     }
 
