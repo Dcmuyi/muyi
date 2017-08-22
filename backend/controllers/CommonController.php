@@ -2,14 +2,12 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\helpers\Url;
-use yii\web\Controller;
 
 /**
  * Class CommonController
  * @package app\components\controller
  */
-class CommonController extends Controller
+class CommonController extends BaseController
 {
     public $returnUrlParam = '__returnUrl';
     /**
@@ -24,7 +22,7 @@ class CommonController extends Controller
         {
             Yii::$app->session->set($this->returnUrlParam, Yii::$app->request->absoluteUrl);
 
-            $this->redirect(Url::to([Yii::$app->user->loginUrl]))->send();
+            $this->redirect(Yii::$app->user->loginUrl)->send();
 
             Yii::$app->end();
         }
