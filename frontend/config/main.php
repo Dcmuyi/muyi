@@ -32,7 +32,7 @@ return [
 
         'user' => [
             'identityClass' => 'common\models\User',
-            'identityCookie' => ['name' => '_identity-test', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-muyi', 'httpOnly' => true],
             'enableAutoLogin' => true,
             'loginUrl'=> '/site/login.html',
         ],

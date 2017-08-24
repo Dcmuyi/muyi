@@ -114,12 +114,17 @@ $category = Yii::$app->params['articleCategory'];
 </div>
 
 <script>
-    window.onblur = function() {
-        document.title = "发呆- ( ゜- ゜)つロ ";
-        $("#web-icon").attr('href',"/up/logo_back.png");
-        window.onfocus = function() {
-            document.title = "这是一个首页";
-            $("#web-icon").attr('href',"/up/logo.png");
-        }
-    };
+    $(function(){
+        // 初始化轮播
+        $('.carousel').carousel();
+
+        window.onblur = function() {
+            document.title = "发呆- ( ゜- ゜)つロ ";
+            $("#web-icon").attr('href',"/up/logo_back.png");
+            window.onfocus = function() {
+                document.title = "这是一个首页";
+                $("#web-icon").attr('href',"/up/logo.png");
+            }
+        };
+    });
 </script>

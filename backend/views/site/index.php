@@ -2,52 +2,142 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+use common\components\CommonHelper;
+use yii\helpers\Url;
+use yii\widgets\LinkPager;
+
+$this->title = '首页';
+$category = Yii::$app->params['articleCategory'];
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<style>
+    h4 {
+        font-size: 14px;
+    }
+</style>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+<div class="row">
+    <div class="col-lg-9">
+        <!--    轮播图-->
+        <div class="panel panel-default">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner" style="height: 308px;">
+                    <div class="item active">
+                        <img class="carousel-pic" src="/up/1.jpg" alt="First slide">
+                    </div>
+                    <div class="item">
+                        <img class="carousel-pic" src="/up/2.jpg" alt="Second slide">
+                    </div>
+                    <div class="item">
+                        <img class="carousel-pic" src="/up/3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                   data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel"
+                   data-slide="next">&rsaquo;</a>
             </div>
         </div>
 
+        <!--最新文章-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">最新动态</h2>
+            </div>
+
+            <div class="panel-body">
+                <ul class="media-list">
+                    <?php foreach ($result as $v) : ?>
+                        <li class="media">
+                            <div class="media-left">
+                                <img class="media-object" src="<?= Yii::$app->params['webUrl'].$userList[$v['user_id']]['pic_small'] ?>">
+                            </div>
+
+                            <div class="media-body">
+                                <h2 class="media-heading">
+                                    <a href="<?= Url::to([sprintf('/site/%s', $v['id'])]) ?>">
+                                        <?= $v['title'] ?>
+
+                                        <?php if (time() - $v['created_at'] < 864000): ?>
+                                            <span class="label label-primary">新</span>
+                                        <?php endif; ?>
+                                    </a>
+                                </h2>
+
+                                <div class="media-action">
+                                    <a href="#"><?= $userList[$v['user_id']]['username'] ?></a> 发布于 <?= CommonHelper::friendlyDate($v['created_at']) ?><span class="glyphicon glyphicon-tag ml-10"></span> <?= $category[$v['category']] ?>
+                                </div>
+                            </div>
+
+                            <div class="media-right">
+                                <a class="btn btn-default" href="<?= Url::to([sprintf('/article/%s', $v['id'])]) ?>">
+                                    <h4>浏览</h4>
+                                    <?= $v['visit_times'] ?>
+                                </a>
+                            </div>
+
+                            <div class="media-right">
+                                <a class="btn btn-default" href="<?= Url::toRoute([sprintf('/article/%s', $v['id']), '#' => 'review-list']) ?>">
+                                    <h4>回复</h4>
+                                    <?= $v['review_times'] ?>
+                                </a>
+                            </div>
+
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <?= LinkPager::widget([
+                    'pagination' => $pages,
+                ])
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">个人资料</h3>
+            </div>
+            <div class="panel-body" style="background: url('/up/backgroud.jpg'); background-size:100% 100%; background-repeat:no-repeat;">
+                <div class="user">
+                    <img class="avatar img-rounded" alt="<?= $user['username'] ?>" src="<?= Yii::$app->params['webUrl'].$user['pic'] ?>">
+
+                    <h1><?= $user['username'] ?></h1>
+                    <p><?= empty($user['signature']) ? '这家伙很懒，什么都没有留下' : $user['signature'] ?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group">
+            <a class="list-group-item <?= empty($_GET['category']) ? 'active' : '' ?>" href= "<?= Url::to('index.html') ?>">
+                <span class="badge pull-right"><?= $chart['0'] ?></span>
+                所有分类
+            </a>
+
+            <?php foreach ($category as $k => $v) : ?>
+                <a class="list-group-item <?= (isset($_GET['category']) && $k==$_GET['category']) ? 'active' : '' ?>" href= "<?= Url::current(['category'=>$k]) ?>">
+                    <span class="badge pull-right"><?= $chart[$k] ?></span>
+                    <?= $v ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
     </div>
 </div>
+
+<script>
+    $(function(){
+        // 初始化轮播
+        $('.carousel').carousel();
+    });
+</script>
+

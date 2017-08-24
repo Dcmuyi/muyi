@@ -1,10 +1,15 @@
 <?php
 namespace backend\controllers;
 
+use common\components\CommonHelper;
+use common\models\ArticleContentModel;
+use common\models\ArticleReviewModel;
+use common\models\UserModel;
 use Yii;
-use yii\web\Controller;
-use yii\filters\AccessControl;
+use common\models\ArticleModel;
 use common\models\LoginForm;
+use yii\data\Pagination;
+use yii\helpers\Url;
 
 /**
  * Site controller
@@ -12,13 +17,100 @@ use common\models\LoginForm;
 class SiteController extends BaseController
 {
     /**
-     * Displays homepage.
-     *
      * @return string
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $category = Yii::$app->request->get('category');
+
+        $query = $queryCount = ArticleModel::find()
+            ->andFilterWhere(['category' => $category])
+            ->asArray();
+
+        $count = $queryCount->count();
+
+        /* 分页 */
+        $pages = new Pagination(['totalCount' =>$count]);
+
+        //统计
+        $dataNew = ArticleModel::find()
+            ->select(['count(1)', 'category'])
+            ->groupBy('category')
+            ->indexBy('category')
+            ->orderBy('category ASC')
+            ->column();
+        $dataNew['0'] = array_sum($dataNew);
+
+        ksort($dataNew);
+
+        $result = $query->offset($pages->offset)->limit($pages->limit)->orderBy('id DESC')->all();
+
+        //用户信息
+        $userIdList = array_column($result, 'user_id');
+        $userList = CommonHelper::getUserList($userIdList);
+
+        //muyi's info
+        $user = UserModel::findOne('1');
+
+        return $this->render('index', [
+            'result' => $result,
+            'userList' => $userList,
+            'user' => $user,
+            'chart' => $dataNew,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionView()
+    {
+        $id = Yii::$app->request->get('id');
+
+        $article = ArticleModel::findOne($id);
+        $content = ArticleContentModel::findOne($id);
+        $user = UserModel::findOne($article->user_id);
+
+        //没有信息跳转404
+        if (empty($article) || empty($content)) {
+            $this->redirect(['site/error'])->send();
+        }
+
+        //回复model
+        $reviewModel = new ArticleReviewModel();
+
+        if (Yii::$app->request->post()) {
+            $reviewModel->load(Yii::$app->request->post());
+
+            $reviewModel->article_id = $id;
+            $reviewModel->user_id = Yii::$app->user->id;
+
+            if ($reviewModel->save()) {
+                $article->review_times += 1;
+
+                $article->save();
+            }
+
+            $this->redirect(Url::current(['#'=>'review-list']))->send();
+        }
+
+        //浏览次数+1
+        $article->visit_times += 1;
+        $article->save();
+
+        $reviewList = ArticleReviewModel::find()
+            ->select(['article_review.*', 'user.username', 'user.pic_small'])
+            ->innerJoin(UserModel::tableName(), 'user.id = article_review.user_id')
+            ->andWhere(['article_id' => $id])
+            ->orderBy('article_review.id DESC')
+            ->asArray()
+            ->all();
+
+        return $this->render('view', [
+            'model' => $article,
+            'content' => $content,
+            'user' => $user,
+            'reviewList' => $reviewList,
+            'reviewModel' => $reviewModel,
+        ]);
     }
 
     /**

@@ -12,15 +12,16 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
+            'identityCookie' => ['name' => '_identity-muyi', 'httpOnly' => true],
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
-            'loginUrl'=> '/site/login',
+            'loginUrl'=> '/site/login.html',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -42,6 +43,10 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '.html',
+            'rules' => [
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+            ]
         ],
     ],
     'params' => $params,

@@ -96,8 +96,8 @@ AppAsset::register($this);
 //    echo Html::beginForm(['site/search'], 'get', ['class' => 'navbar-form visible-lg-inline-block']);
 //    echo Html::textInput('keyword', '', ['class' => 'form-control phone-input']);
 //    echo Html::button( '搜索', ['class' => 'form-control']);
-
-    echo Html::endForm();
+//
+//    echo Html::endForm();
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right nav-pills'],
