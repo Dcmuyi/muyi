@@ -44,7 +44,7 @@ $category = Yii::$app->params['articleCategory'];
 </head>
 
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-9 bg">
         <div class="page-header">
             <h1>
                 <?= $this->title ?>
@@ -115,7 +115,18 @@ $category = Yii::$app->params['articleCategory'];
             <?php else: ?>
             <?php $form = ActiveForm::begin(['id' => 'form-review']); ?>
 
-            <?= $form->field($reviewModel, 'content')->textarea(['id'=>'content']); ?>
+            <?= $form->field($reviewModel,'content')->widget('kucha\ueditor\UEditor',[
+                'clientOptions' => [
+                    //浮动时工具栏距离浏览器顶部的高度
+                    'topOffset' => '50',
+                    //定制菜单
+                    'toolbars' => [[
+                        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+                        'fontfamily', 'fontsize', '|',
+                        'indent','justifyleft', 'justifycenter', 'simpleupload', 'emotion', 'scrawl', 'insertcode', 'horizontal', 'spechars',
+                    ]],
+                ]
+            ]); ?>
 
             <div class="form-group mt-10">
                 <?= Html::submitButton('回复', ['class' => 'btn btn-primary', 'name' => 'review-button']) ?>

@@ -1,2 +1,2 @@
 <?php
-echo 213;
+echo \kucha\ueditor\UEditor::widget(['name' => 'xxxx']);

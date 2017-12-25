@@ -58,7 +58,7 @@ $category = Yii::$app->params['articleCategory'];
                     <?php foreach ($result as $v) : ?>
                         <li class="media">
                             <div class="media-left">
-                                <img class="media-object" src="<?= Yii::$app->params['webUrl'].$userList[$v['user_id']]['pic_small'] ?>">
+                                <img class="media-object" src="<?= $userList[$v['user_id']]['pic_small'] ?>">
                             </div>
 
                             <div class="media-body">
@@ -110,12 +110,16 @@ $category = Yii::$app->params['articleCategory'];
             </div>
             <div class="panel-body" style="background: url('/up/backgroud.jpg'); background-size:100% 100%; background-repeat:no-repeat;">
                 <div class="user">
-                    <img class="avatar img-rounded" alt="<?= $user['username'] ?>" src="<?= Yii::$app->params['webUrl'].$user['pic'] ?>">
+                    <img class="avatar img-rounded" alt="<?= $user['username'] ?>" src="<?= $user['pic'] ?>">
 
                     <h1><?= $user['username'] ?></h1>
                     <p><?= empty($user['signature']) ? '这家伙很懒，什么都没有留下' : $user['signature'] ?></p>
                 </div>
             </div>
+        </div>
+
+        <div class="panel panel-default">
+            <a class="btn btn-success btn-block" href="<?= Url::to(['create']) ?>">我要发布</a>
         </div>
 
         <div class="list-group">

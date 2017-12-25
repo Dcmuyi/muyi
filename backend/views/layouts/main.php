@@ -24,7 +24,6 @@ $this->registerCssFile(Yii::$app->params['webUrl'].'/static/site.css');
     <?php $this->head() ?>
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<!--    <link href="--><?php //echo Yii::$app->params['webUrl'].'/static/site.css' ?><!--" rel="stylesheet">-->
     <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
 
     <?php $this->head() ?>
@@ -48,18 +47,6 @@ $this->registerCssFile(Yii::$app->params['webUrl'].'/static/site.css');
         ['label' => 'C', 'url' => Yii::$app->params['webUrl']],
     ];
 
-//    if (Yii::$app->user->isGuest) {
-//        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-//    } else {
-//        $menuItems[] = '<li>'
-//            . Html::beginForm(['/site/logout'], 'post')
-//            . Html::submitButton(
-//                'Logout (' . Yii::$app->user->identity->username . ')',
-//                ['class' => 'btn btn-link']
-//            )
-//            . Html::endForm()
-//            . '</li>';
-//    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,

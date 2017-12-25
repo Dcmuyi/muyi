@@ -8,6 +8,7 @@ use common\models\UserModel;
 use Yii;
 use common\models\ArticleModel;
 use common\models\LoginForm;
+use yii\base\Exception;
 use yii\data\Pagination;
 use yii\helpers\Url;
 
@@ -58,6 +59,48 @@ class SiteController extends BaseController
             'user' => $user,
             'chart' => $dataNew,
             'pages' => $pages
+        ]);
+    }
+
+    public function actionCreate()
+    {
+        $model = new ArticleModel();
+        $contentModel = new ArticleContentModel();
+
+        if (Yii::$app->request->getIsPost()) {
+            $userId = Yii::$app->user->id;
+
+            //事物
+            $tran = Yii::$app->db->beginTransaction();
+            try {
+                $model->load(Yii::$app->request->post());
+                $model->user_id = $userId;
+
+                if (!$model->save()) {
+                    throw new Exception('添加文章失败');
+                }
+
+                $contentModel->load(Yii::$app->request->post());
+                $contentModel->article_id = $model->id;
+
+                if (!$contentModel->save()) {
+                    throw new Exception('添加文章内容失败');
+                }
+
+                CommonHelper::setFlash('success', '添加成功');
+
+                $tran->commit();
+                $this->redirect('index.html')->send();
+
+            } catch (Exception $e) {
+                $tran->rollBack();
+                CommonHelper::setFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'contentModel' => $contentModel
         ]);
     }
 

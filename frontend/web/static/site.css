@@ -505,3 +505,6 @@ h1:hover .hashlink, h2:hover .hashlink, h3:hover .hashlink, h4:hover .hashlink, 
 .mt-40 {
     margin-top:40px;
 }
+.bg {
+    background-color: #fff;
+}

@@ -17,6 +17,7 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'mdm\\admin\\' => array($vendorDir . '/mdmsoft/yii2-admin'),
     'linslin\\yii2\\curl\\' => array($vendorDir . '/linslin/yii2-curl'),
+    'kucha\\ueditor\\' => array($vendorDir . '/kucha/ueditor'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),

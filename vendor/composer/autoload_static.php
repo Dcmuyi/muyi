@@ -32,6 +32,10 @@ class ComposerStaticInitb174566100010a643134e61d3a797a5e
         array (
             'linslin\\yii2\\curl\\' => 18,
         ),
+        'k' => 
+        array (
+            'kucha\\ueditor\\' => 14,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -90,6 +94,10 @@ class ComposerStaticInitb174566100010a643134e61d3a797a5e
         'linslin\\yii2\\curl\\' => 
         array (
             0 => __DIR__ . '/..' . '/linslin/yii2-curl',
+        ),
+        'kucha\\ueditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kucha/ueditor',
         ),
         'cebe\\markdown\\' => 
         array (
