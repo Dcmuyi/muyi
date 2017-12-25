@@ -27,13 +27,14 @@ return [
         'OSS_ENDPOINT'=>'jkbs.oss-cn-hangzhou.aliyuncs.com',
         'OSS_BUCKET'=>'jkbs'
     ],
-
+    
     //文章分类
     'articleCategory' => [
         '1' => '后端',
         '2' => '数据库',
         '3' => '前端',
         '5' => '服务器',
+        '10' => '财务管理',
         '4' => '漫画',
         '100' => '其他',
     ]
