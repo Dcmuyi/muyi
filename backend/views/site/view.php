@@ -16,32 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 $category = Yii::$app->params['articleCategory'];
 ?>
 
-<head>
-    <link rel="stylesheet" href="<?php echo Yii::$app->params['webUrl'].'/kindeditor/themes/default/default.css' ?>" />
-    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/kindeditor-min.js' ?>"></script>
-    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/lang/zh_CN.js' ?>"></script>
-    <!--语法加亮-->
-    <script charset="utf-8" src="<?php echo Yii::$app->params['webUrl'].'/kindeditor/plugins/code/prettify.js' ?>"></script>
-
-    <script>
-        var editor;
-        KindEditor.ready(function(K) {
-            editor = K.create('textarea[id="content"]', {
-                allowPreviewEmoticons : false,
-                resizeType : 0,
-                width : '100%',
-                height : '250px',
-                allowImageUpload : true,
-                cssPath : 'https://www.zydc1104.top/kindeditor/plugins/code/prettify.css',
-                uploadJson : '<?php echo \yii\helpers\Url::to(['/upload/upload-img']) ?>',
-                items : [
-                    'fontname', 'fontsize', 'code', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                    'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'table', '|', 'print', 'preview']
-            });
-        });
+<header>
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
     </script>
-</head>
+</header>
 
 <div class="row">
     <div class="col-lg-9 bg">
@@ -96,7 +75,7 @@ $category = Yii::$app->params['articleCategory'];
 
                             <div class="media-content">
                                 <p>
-                                    <?= $review['content'] ?>
+                                    <?= htmlspecialchars_decode($review['content']) ?>
                                 </p>
                             </div>
                         </div>
