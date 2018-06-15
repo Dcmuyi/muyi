@@ -51,7 +51,8 @@ class SiteController extends BaseController
         $userList = CommonHelper::getUserList($userIdList);
 
         //muyi's info
-        $user = UserModel::findOne('1');
+        $userId = Yii::$app->user->id ?? 1;
+        $user = UserModel::findOne($userId);
 
         return $this->render('index', [
             'result' => $result,
