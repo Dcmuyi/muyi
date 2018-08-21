@@ -11,7 +11,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 AppAsset::register($this);
-$this->registerCssFile(Yii::$app->params['webUrl'].'/static/site.css');
+$this->registerCssFile('/static/site.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -19,12 +19,13 @@ $this->registerCssFile(Yii::$app->params['webUrl'].'/static/site.css');
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="木奕">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="<?php echo Yii::$app->params['webUrl'].'/static/jquery-3.1.1.min.js' ?>"></script>
+    <script src="<?php echo '/static/jquery-3.1.1.min.js' ?>"></script>
 
     <?php $this->head() ?>
 </head>
