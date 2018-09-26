@@ -10,6 +10,7 @@ use common\models\ArticleModel;
 use common\models\LoginForm;
 use yii\base\Exception;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\helpers\Url;
 
 /**
@@ -17,6 +18,26 @@ use yii\helpers\Url;
  */
 class SiteController extends BaseController
 {
+    /**
+     * 行为控制
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'create'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * @return string
      */

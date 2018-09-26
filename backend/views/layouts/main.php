@@ -27,6 +27,20 @@ $this->registerCssFile('/static/site.css');
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="<?php echo '/static/jquery-3.1.1.min.js' ?>"></script>
 
+    <style>
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            margin-top: 8px;
+            margin-bottom: -12px;
+        }
+        .user-pic {
+            width: 36px;
+            height: 36px;
+            margin-top: -13px;
+            margin-bottom: -12px;
+        }
+    </style>
     <?php $this->head() ?>
 </head>
 <body>
@@ -42,16 +56,35 @@ $this->registerCssFile('/static/site.css');
         ],
     ]);
 
-    $menuItems = [
-        ['label' => 'D', 'url' => Yii::$app->params['webUrl']],
+    if (Yii::$app->user->isGuest)
+    {
+        $menuItems[] = ['label' => 'R', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'L', 'url' => ['/site/login']];
+    }
+    else
+    {
+        $menuItems[] = ['label' => '<i class="fa fa-bell"></i><span style="color: red"></span>', 'url' => ['/site/signup']];
 
-        ['label' => 'C', 'url' => Yii::$app->params['webUrl']],
-    ];
+        $menuItems[] = [
+            'label' => '<image class="user-pic" src = '.Yii::$app->user->identity->pic_small.' />',
+            'items' => [
+                ['label' => '<i class="fa fa-user fa-fw"></i> 个人中心', 'url' => '#'],
+                ['label' => '<i class="fa fa-camera fa-fw"></i> 修改头像', 'url' => '#'],
+                '<li class="divider"></li>',
+                ['label' => '<i class="fa fa-list fa-fw"></i> 我的发布', 'url' => '#'],
+                ['label' => '<i class="fa fa-star fa-fw"></i> 我的收藏', 'url' => '#'],
+                '<li class="divider"></li>',
+                ['label' => '<i class="fa fa-sign-out fa-fw"></i> 退出登陆', 'url' =>['/site/logout']],
+            ],
+        ];
+    }
 
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav navbar-right nav-pills'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
+
     NavBar::end();
     ?>
 
